@@ -126,7 +126,7 @@ body {
              <h4 style="color: #7EB59E; margin: initial; margin-bottom: 10px;">Sign Up Now</h4><hr>
             <div class="input-group margin-bottom-20">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user mycolor"></i></span>
-                <input size="60" maxlength="255" class="form-control" placeholder="User Name" name="username" id="UserRegistration_username" type="text">                                                        </div>
+                <input size="60" maxlength="255" class="form-control" placeholder="User Name" name="username" id="UserRegistration_username" type="email">                                                        </div>
             <div class="input-group margin-bottom-20">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock mycolor"></i></span>
                 <input size="60" maxlength="255" class="form-control" placeholder="Password" name="password" id="UserRegistration_password" type="password">                                    </div>
@@ -145,6 +145,9 @@ body {
             <div class="row">
                 <div class="col-md-12">
                     <button class="btn-u pull-left" type="submit" name="action" value="add">Sign Up</button>
+                    <button class="btn-u pull-left" type="submit" name="action" value="update">update</button>
+                    <button class="btn-u pull-left" type="submit" name="action" value="delete">delete</button>
+                  
                 </div>
             </div>
         </div>
@@ -152,6 +155,8 @@ body {
     </div>
       </div>
       </form>
+     
+<a href="list">click here to see list</a>
       <%@include file="footer.jsp" %>
 </body>
 </html>
