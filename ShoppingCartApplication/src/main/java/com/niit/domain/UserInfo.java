@@ -1,19 +1,36 @@
 package com.niit.domain;
 
+
+
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name="user1")
-public class UserInfo {
+@Table(name="register")
+public class UserInfo  {
+	
+
+	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private String username;
+	
 	private String password;
+	
 	private String fname;
+	
 	private String lname;
+	
 	private String address;
 	private String contactnumber;
+	
+	
+	public UserInfo(){}
 	public String getUsername() {
 		return username;
 	}

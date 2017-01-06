@@ -117,8 +117,8 @@ body {
 <body>
 <%@include file="header.jsp" %>
 <br />
-<form modelAttribute="userinfo" method="post"
-   action="register">
+<form action="register.do" method="post" commandName="user">
+   
 <div class="container">
     <div class="col-md-3"></div>
     <div class="col-md-6">
@@ -144,7 +144,7 @@ body {
                 <input size="60" maxlength="255" class="form-control" placeholder="Contact Number" name="contactnumber" id="UserRegistration_contactnumber" type="text">                                    </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button class="btn-u pull-left" type="submit">Sign Up</button>
+                    <button class="btn-u pull-left" type="submit" name="action" value="add">Sign Up</button>
                 </div>
             </div>
         </div>
