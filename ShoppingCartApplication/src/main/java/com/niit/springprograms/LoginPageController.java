@@ -23,10 +23,7 @@ public class LoginPageController {
 		return "login";
 	}
 	@RequestMapping("/register")
-	public String getRegister() {
-//		dataService.insertRow(userinfo);
-//		  return new ModelAndView("redirect:list");
-		//@ModelAttribute UserInfo userinfo
+	public String getRegister(){
 
 		return "register";
 	}
@@ -41,20 +38,20 @@ public class LoginPageController {
       mv.addObject("email", c);
 		return mv;
 	}
-//	@RequestMapping("/validate")
-//	public ModelAndView validate(@RequestParam("email") String email,@RequestParam("pwd")String pwd){
-//		System.out.println("validate methode");
-//		ModelAndView mv=new ModelAndView("user");
-//		UserDao userDAO=new UserDao();
-//		if(userDAO.isValidCredentials(email,pwd)==true){
-//			mv.addObject("successmsg","you  logged in successfully");
-////			
-////		}
-////		else{
-////			mv.addObject("errormsg","please try again,");
-////		}
-////		return mv;
-//	}
+	@RequestMapping("/validate")
+	public ModelAndView validate(@RequestParam("email") String email,@RequestParam("pwd")String pwd){
+		System.out.println("validate methode");
+		ModelAndView mv=new ModelAndView("user");
+		UserDao userDAO=new UserDao();
+		if(userDAO.isValidCredentials(email,pwd)==true){
+			mv.addObject("successmsg","you  logged in successfully");
+			
+		}
+		else{
+			mv.addObject("errormsg","please try again,");
+		}
+		return mv;
+	}
 	
 }
 
