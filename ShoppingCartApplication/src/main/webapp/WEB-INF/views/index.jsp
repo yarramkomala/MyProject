@@ -39,7 +39,7 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
-					<img class="img-responsive" src="Resources/images/1.jpg" alt="Chania"  width="500" height="500" >
+					<img class="img-responsive" src="Resources/images/cr1.jpg" alt="Chania"  width="500" height="500" >
 					
 				</div>
 

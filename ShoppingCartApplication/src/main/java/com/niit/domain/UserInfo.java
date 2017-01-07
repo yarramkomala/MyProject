@@ -11,15 +11,15 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="userinformation")
+@Table(name="register")
 public class UserInfo  {
 	
 
 	
-	
-//	@GeneratedValue(strategy=GenerationType.AUTO)
-//	private String userid;
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private String userid;
+	
 	private String username;
 	
 	
@@ -32,13 +32,13 @@ public class UserInfo  {
 	private String address;
 	private String contactnumber;
 	
-//	
-//	public String getUserid() {
-//		return userid;
-//	}
-//	public void setUserid(String userid) {
-//		this.userid = userid;
-//	}
+	
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 	public UserInfo(){}
 	public String getUsername() {
 		return username;

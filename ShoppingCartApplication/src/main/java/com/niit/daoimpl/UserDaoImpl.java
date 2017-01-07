@@ -32,7 +32,9 @@ public class UserDaoImpl implements UserDao{
 	@Transactional
 	public void updateRow(UserInfo userinfo) {
 		Session session = sessionFactory.getCurrentSession();
-		session.update(userinfo);
+		//UserInfo o=(UserInfo)session.get(UserInfo.class, userinfo.getUserid());
+		
+		session.saveOrUpdate(userinfo);
 		}
 	@Override
 	@Transactional

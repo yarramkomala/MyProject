@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -155,8 +156,9 @@ body {
     </div>
       </div>
       </form>
-     
-<a href="list">click here to see list</a>
+    <center>
+<h2><a href="list">click here to see list</a></h2>
+</center> 
       <%@include file="footer.jsp" %>
 </body>
 </html>

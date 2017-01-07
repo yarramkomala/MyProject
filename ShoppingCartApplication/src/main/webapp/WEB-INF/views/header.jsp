@@ -23,6 +23,7 @@
 					Sign Up</a></li>
 			<li><a href="login"><span class="glyphicon glyphicon-log-in"></span>
 					Login</a></li>
+		    <li><a href="addproduct">AddProduct</a></li>
 		</ul>
 	</div>
 	</nav>
