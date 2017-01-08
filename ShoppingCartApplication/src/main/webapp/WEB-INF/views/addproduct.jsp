@@ -16,6 +16,7 @@
 <title>AddProducts</title>
 </head>
 <body>
+<%@include file="header.jsp" %>
 <div class="container">
   <form:form action="insertproduct" modelAttribute="product" method="post">
     <div class="form-group">
@@ -42,5 +43,6 @@
   </form:form>
 </div>
 <a href="plist">Click Here to see  products</a>
+<%@include file="footer.jsp" %>
 </body>
 </html>

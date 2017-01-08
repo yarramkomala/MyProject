@@ -16,6 +16,7 @@ public class ProductController {
 	
 	@Autowired
 	ProductService pservice;
+	Product productObject=null;
 	@RequestMapping("/addproduct")
 	public  ModelAndView  getProductPage(@ModelAttribute Product product) {
 
@@ -42,13 +43,16 @@ public class ProductController {
 	 @RequestMapping("/pedit")
 	 public ModelAndView editUser(@RequestParam int id,
 	   @ModelAttribute Product product) {
-	  Product productObject = pservice.getRowById(id);
+	   productObject = pservice.getRowById(id);
 	  return new ModelAndView("pedit", "productObject", productObject);
 	 }
 
 	 @RequestMapping("/pupdate")
 	 public ModelAndView updateUser(@ModelAttribute Product product) {
-	  pservice.updateRow(product);
+		 int id = productObject.getId();
+		 System.out.println(id);
+		 product.setId(id);
+		 pservice.updateRow(product);
 	  return new ModelAndView("redirect:plist");
 	 }
 

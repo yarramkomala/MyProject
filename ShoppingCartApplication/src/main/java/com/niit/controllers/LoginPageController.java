@@ -45,26 +45,10 @@ public class LoginPageController {
 		userservice.insertRow(userinfo);
 		userlist=userinfo;
 		break;
-	case "update":
-		userservice.updateRow(userinfo);
-		userlist=userinfo;
-		break;
-	case "delete":
-		userservice.deleteRow(userinfo.getUsername());
-		userlist=new UserInfo();
-		break;
-	
 	}
 		map.put("userinfo",userlist);
 		map.put("userlist",userservice.getList());
 		return "index";
-	}
-	
-	@RequestMapping("list")
-	 public ModelAndView getList(@ModelAttribute UserInfo userinfo,BindingResult result ,Map<Object, String> map ){
-		List userlist=userservice.getList();
-		return new ModelAndView("list","userlist",userlist);
-		
 	}
 	
 }

@@ -17,8 +17,9 @@
  <style>
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
-      width: 120%;
+      width: 70%;
       margin: auto;
+      hieght:auto;
   }
   </style>
 </head>
@@ -39,23 +40,23 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
-					<img class="img-responsive" src="Resources/images/cr1.jpg" alt="Chania"  width="500" height="500" >
-					
+<!-- 					<img class="img-responsive" src="Resources/images/cr1.jpg" alt="Chania"  width="500" height="200" > -->
+					<img src="Resources/images/cr1.jpg" class="img-fluid" alt="Responsive image">
 				</div>
 
 				<div class="item">
-					<img  class="img-responsive" src="Resources/images/2.jpg" alt="Chania"  width="500" height="500">
-					
+<!-- 					<img  class="img-responsive" src="Resources/images/2.jpg" alt="Chania"  > -->
+					<img src="Resources/images/cr3.jpg" class="img-fluid" alt="Responsive image">
 				</div>
                     <div class="item">
-					<img class="img-responsive" src="Resources/images/3.jpg" alt="Flower"  width="500" height="500">
-					
+<!-- 					<img class="img-responsive" src="Resources/images/3.jpg" alt="Flower"  > -->
+					<img src="Resources/images/cr2.jpg" class="img-fluid" alt="Responsive image" height="500">
 				</div>
 				
 
 				<div class="item">
-					<img class="img-responsive" src="Resources/images/4.jpg" alt="Flower"  width="500" height="500">
-					
+<!-- 					<img class="img-responsive" src="Resources/images/4.jpg" alt="Flower"  > -->
+					<img src="Resources/images/4.jpg" class="img-fluid" alt="Responsive image" height="300">
 				</div>
 			</div>
 
@@ -64,9 +65,9 @@
 				data-slide="prev"> <span
 				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 				<span class="sr-only">Previous</span>
-			</a> <a class="right carousel-control" href="#myCarousel" role="button"
-				data-slide="next"> <span
-				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			</a> <a class="right carousel-control" href="#myCarousel" role="button"data-slide="next">
+				 
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
 			</a>
 		</div>

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -146,8 +147,7 @@ body {
             <div class="row">
                 <div class="col-md-12">
                     <button class="btn-u pull-left" type="submit" name="action" value="add">Sign Up</button>
-                    <button class="btn-u pull-left" type="submit" name="action" value="update">update</button>
-                    <button class="btn-u pull-left" type="submit" name="action" value="delete">delete</button>
+                   
                   
                 </div>
             </div>
@@ -156,9 +156,7 @@ body {
     </div>
       </div>
       </form>
-    <center>
-<h2><a href="list">click here to see list</a></h2>
-</center> 
+   
       <%@include file="footer.jsp" %>
 </body>
 </html>

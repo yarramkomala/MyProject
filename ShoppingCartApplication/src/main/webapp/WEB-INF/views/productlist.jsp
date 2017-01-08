@@ -18,6 +18,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<%@include file="header.jsp" %>
 
 <c:if test="${!empty productList}">  
 <div class="container">
@@ -53,4 +54,6 @@
 </div>
 </c:if>
 <a href="addproduct">Click Here to add new User</a>
+<%@include file="footer.jsp" %>
 </body>
+</html>
