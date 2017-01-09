@@ -17,6 +17,13 @@ public class Product {
 	private String quantity;
 	private String categoryName;
 	private String supplierName;
+	private String description;
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public Product(){}
 	public int getId() {
 		return id;

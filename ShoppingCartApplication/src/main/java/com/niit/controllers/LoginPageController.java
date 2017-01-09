@@ -22,6 +22,11 @@ public class LoginPageController {
 
 		return "index";
 	}
+	@RequestMapping("home")
+	public String getindex() {
+
+		return "index";
+	}
 	@RequestMapping("/login")
 	public String getLogin() {
 
@@ -31,7 +36,7 @@ public class LoginPageController {
 	public String getRegister(Map<String,Object> map) {
 	UserInfo userinfo=new UserInfo();
 	map.put("userinfo", userinfo);
-	map.put("userlist",userservice.getList());
+	
 	System.out.println(userinfo);
 		
 		return "register";
@@ -47,7 +52,7 @@ public class LoginPageController {
 		break;
 	}
 		map.put("userinfo",userlist);
-		map.put("userlist",userservice.getList());
+		
 		return "index";
 	}
 	

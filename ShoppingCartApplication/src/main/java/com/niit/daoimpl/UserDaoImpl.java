@@ -1,7 +1,5 @@
 package com.niit.daoimpl;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,34 +26,7 @@ public class UserDaoImpl implements UserDao{
 	
 	
 	}
-	@Override
-	@Transactional
-	public void updateRow(UserInfo userinfo) {
-		Session session = sessionFactory.getCurrentSession();
-		//UserInfo o=(UserInfo)session.get(UserInfo.class, userinfo.getUserid());
-		
-		session.saveOrUpdate(userinfo);
-		}
-	@Override
-	@Transactional
-	public void deleteRow(String username) {
-		Session session = sessionFactory.getCurrentSession();
-		session.delete(getRowById(username));
-		
-	}
-	@Override
-	@Transactional
-	public List getList() {
-		
-		return sessionFactory.getCurrentSession().createQuery("from UserInfo").list();
-	}
-	@Override
-	@Transactional
-	public UserInfo getRowById(String username) {
-		
-		
-		return (UserInfo)sessionFactory.getCurrentSession().createQuery("from userInfo");
-	}
+	
 		
 
 
