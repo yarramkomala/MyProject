@@ -26,15 +26,18 @@
   <table class="table table-striped">
     <thead>
       <tr>
+      <th>Id</th>
         <th>ProductName</th>
         <th>Price</th>
         <th>Quantity</th>
         <th>Category Name</th>
          <th>Supplier Name</th>
+         <th>Description</th>
       </tr>
        <c:forEach items="${productList}" var="product">
        <tr>
-       
+       <td><c:out value="${product.id}" />
+      </td>
     <td><c:out value="${product.productName}" />
       </td>
       <td><c:out value="${product.price}" />
@@ -44,6 +47,8 @@
       <td><c:out value="${product.categoryName}" /></td>
       
       <td><c:out value="${product.supplierName}" />
+      </td>
+      <td><c:out value="${product.description}" />
       </td>
       <td><a href="pedit?id=${product.id}">Edit</a></td>
       <td><a href="pdelete?id=${product.id}">Delete</a></td>

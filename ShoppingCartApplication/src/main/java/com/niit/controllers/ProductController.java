@@ -1,5 +1,9 @@
 package com.niit.controllers;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +30,31 @@ public class ProductController {
 	@RequestMapping("/insertproduct")
 	public  ModelAndView getProduct(@ModelAttribute Product product) {
      pservice.insertRow(product);
-		return new ModelAndView("redirect:plist");
+     if (!product.getImage().isEmpty()) {
+    	 try {
+			byte[] bytes = product.getImage().getBytes();
+			// Creating the directory to store file
+			String rootPath = System.getProperty("catalina.home");
+			File dir = new File(rootPath + File.separator + "image");
+			if (!dir.exists())
+				dir.mkdirs();
+			// Create the file on server
+			File serverFile = new File(dir.getAbsolutePath()
+					+ File.separator +product.getproductName());
+			BufferedOutputStream stream = new BufferedOutputStream(
+					new FileOutputStream(serverFile));
+			stream.write(bytes);
+			stream.close();
+			return new ModelAndView("redirect:plist");
+			} catch (Exception e) {
+				return new ModelAndView("redirect:plist");
+			}
+		} else {
+			return new ModelAndView("addproduct");
+		}
+
 	}
+    
 	 @RequestMapping("/plist")
 	 public ModelAndView getPList() {
 	  List productList = pservice.getProductList();

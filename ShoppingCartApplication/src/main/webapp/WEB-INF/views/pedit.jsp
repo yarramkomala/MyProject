@@ -51,7 +51,12 @@
      <td><form:input path="supplierName" class="form-control" value="${productObject.supplierName}"/></td>
      </div>
      </tr>
-    </tr>
+       <tr>
+    <div class="form-group">
+     <td><form:label path="description">Description</form:label></td>
+     <td><form:input path="description" class="form-control" value="${productObject.description}"/></td>
+     </div>
+      </tr>
     <tr>
      <td></td>
      <td><input type="submit" value="Update" />

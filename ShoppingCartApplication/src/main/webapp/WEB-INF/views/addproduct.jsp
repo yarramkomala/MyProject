@@ -17,8 +17,9 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
+
 <div class="container">
-  <form:form action="insertproduct" modelAttribute="product" method="post">
+  <form:form  class="form-horizontal" action="insertproduct" modelAttribute="product" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="name">ProductName:</label>
       <input type="text" class="form-control" id="name" name="productName" placeholder="Enter product name">
@@ -39,10 +40,20 @@
       <label for="suppliername">Supplier Name:</label>
       <input type="text" class="form-control" id="suppliername" name="supplierName" placeholder="Enter supplier name">
     </div>
+    <div class="form-group">
+      <label for="image">File:</label>
+    <input type="file" class="form-control" id="image" name="image" placeholder="select a file">
+<!--     <input type="submit" value="Upload">  -->
+     </div>
+     <div class="form-group">
+      <label for="suppliername">Description:</label>
+      <input type="text" class="form-control" id="description" name="description" placeholder="Enter description">
+    </div>
     <button type="submit" class="btn btn-default">Add</button>
   </form:form>
 </div>
-<a href="plist">Click Here to see  products</a>
+<center><a href="plist">Click Here to see  products</a></center>
+
 <%@include file="footer.jsp" %>
 </body>
 </html>

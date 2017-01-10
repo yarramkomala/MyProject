@@ -28,7 +28,13 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
 			<value>.jsp</value>
 		</property>
 	</bean>
+<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 
+		 <!-- setting maximum upload size -->
+		<property name="maxUploadSize" value="400000" />
+
+	</bean>
 	
 </beans>
 
