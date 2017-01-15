@@ -21,38 +21,55 @@
 <div class="container">
   <form:form  class="form-horizontal" action="insertproduct" modelAttribute="product" method="post" enctype="multipart/form-data">
     <div class="form-group">
-      <label for="name">ProductName:</label>
-      <input type="text" class="form-control" id="name" name="productName" placeholder="Enter product name">
+      <label class="col-md-4 control-label" for="name">ProductName:</label>
+      <div class="col-md-4">
+      <input type="text" class="form-control" path="name" name="productName" placeholder="Enter product name">
     </div> 
-    <div class="form-group">
-      <label for="price">Price:</label>
-      <input type="text" class="form-control" id="price" name="price" placeholder="Enter price">
     </div>
     <div class="form-group">
-    <label for="quantity">Quantity:</label>
-      <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Enter quantity"> 
+      <label  class="col-md-4 control-label" for="price">Price:</label>
+      <div class="col-md-4">
+      <input type="text" class="form-control" path="price" name="price" placeholder="Enter price">
+    </div>
+    </div>
+    <div class="form-group">
+    <label  class="col-md-4 control-label" for="quantity">Quantity:</label>
+     <div class="col-md-4">
+      <input type="text" class="form-control" path="quantity" name="quantity" placeholder="Enter quantity"> 
+    </div>
     </div>
      <div class="form-group">
-      <label for="categeryname">Category name:</label>
+      <label  class="col-md-4 control-label" for="categeryname">Category name:</label>
+     <div class="col-md-4">
       <input type="text" class="form-control" id="categoryname" name="categoryName" placeholder="Enter category name">
     </div>
+    </div>
      <div class="form-group">
-      <label for="suppliername">Supplier Name:</label>
-      <input type="text" class="form-control" id="suppliername" name="supplierName" placeholder="Enter supplier name">
+      <label  class="col-md-4 control-label" for="suppliername">Supplier Name:</label>
+     <div class="col-md-4">
+      <input type="text" class="form-control" path="suppliername" name="supplierName" placeholder="Enter supplier name">
+    </div>
     </div>
     <div class="form-group">
-      <label for="image">File:</label>
-    <input type="file" class="form-control" id="image" name="image" placeholder="select a file">
+      <label  class="col-md-4 control-label" for="image">File:</label>
+    <div class="col-md-4">
+    <input type="file" class="form-control" path="image" name="image" placeholder="select a file">
 <!--     <input type="submit" value="Upload">  -->
      </div>
+     </div>
      <div class="form-group">
-      <label for="suppliername">Description:</label>
+      <label  class="col-md-4 control-label" for="suppliername">Description:</label>
+      <div class="col-md-4">
       <input type="text" class="form-control" id="description" name="description" placeholder="Enter description">
     </div>
+    </div>
+    <center>
     <button type="submit" class="btn btn-default">Add</button>
+    </center>
   </form:form>
 </div>
 <center><a href="plist">Click Here to see  products</a></center>
+<center><a href="disimage">Click Here to see  products images</a></center>
 
 <%@include file="footer.jsp" %>
 </body>
