@@ -14,12 +14,19 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="row">
+
  <c:forEach  items="${productList}" var="product"> 
- <img  src="<c:url value="pimages/${product.productName}.jpg"/>" class="img-responsive">
+ <div class="col-xs-3">
+ <div class="thumbnail zoom" id="exi">
+ <img  src="<c:url value="/Resources/images/${product.productName}.jpg"/>" class="img-responsive">
 <center> ${product.productName}
 </center>
+</div>
+ </div>
 </c:forEach>
- 
+</div>
+
 
 
 </body>

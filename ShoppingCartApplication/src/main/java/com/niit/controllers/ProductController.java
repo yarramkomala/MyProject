@@ -6,11 +6,11 @@ import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +24,7 @@ public class ProductController {
 	@Autowired
 	ProductService pservice;
 	Product productObject=null;
+	ServletContext servletContext;
 	@RequestMapping("/addproduct")
 	public  ModelAndView  getProductPage(@ModelAttribute Product product) {
 
@@ -31,32 +32,45 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/insertproduct")
-	public  ModelAndView getProduct(@ModelAttribute Product product) {
-     pservice.insertRow(product);
+	public  ModelAndView getProduct(@ModelAttribute Product product,HttpServletRequest hm) {
+     servletContext =hm.getServletContext();
      if (!product.getImage().isEmpty()) {
+    	 System.out.println("get image");
     	 try {
+    		 System.out.println("get image "+servletContext);
 			byte[] bytes = product.getImage().getBytes();
+			System.out.println("get image "+servletContext.getRealPath("/"));
 			// Creating the directory to store file
-			String rootPath = System.getProperty("catalina.home");
-			File dir = new File(rootPath + File.separator + "pimages");
-			if (!dir.exists())
+			String rootPath = servletContext.getRealPath("/");
+			
+			System.out.println("get image "+rootPath);
+			File dir = new File(rootPath + File.separator + "Resources/images");
+			System.out.println("filee "+dir.toString());
+			if (!dir.exists()){
+				System.out.println("filee "+dir.exists());	
 				dir.mkdirs();
+    	 }else{
+    		 System.out.println("filee "+dir.exists());
 			// Create the file on server
 			File serverFile = new File(dir.getAbsolutePath()
 					+ File.separator +product.getproductName()+".jpg");
+			System.out.println(serverFile);
 			BufferedOutputStream stream = new BufferedOutputStream(
 					new FileOutputStream(serverFile));
 			stream.write(bytes);
 			stream.close();
 			System.out.println("server file location"+serverFile.getAbsolutePath());
+			pservice.insertRow(product);
+    	 }
 			return new ModelAndView("addproduct");
 			} catch (Exception e) {
+				e.printStackTrace();
 				return new ModelAndView("addproduct");
 			}
 		} else {
 			return new ModelAndView("addproduct");
 		}
-
+	
 	}
     
 	 @RequestMapping("/plist")
