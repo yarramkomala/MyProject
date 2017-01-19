@@ -148,7 +148,7 @@ body {
                 <div class="col-md-12">
                     <button class="btn-u pull-left" type="submit" name="action" value="add">Sign Up</button>
                    
-                  
+                  <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                 </div>
             </div>
         </div>

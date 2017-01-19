@@ -34,10 +34,16 @@
 
 
 	<div class="container" >
-   
+   <c:if test="${not empty error}">
+			<div class="error">${error}</div>
+		</c:if>
+		<c:if test="${not empty msg}">
+			<div class="msg">${msg}</div>
+		</c:if>
 
   <h2>Login Form</h2>
-  <form action="validate">
+  <form name='login'
+		  action="<c:url value='/j_spring_security_check' />" method='POST'>
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" class="form-control" name="email" placeholder="Enter email">
@@ -50,6 +56,10 @@
       <label><input type="checkbox"> Remember me</label>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
+    <input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+
+    
   </form>
 </div>
 ${successmsg }
@@ -62,20 +72,6 @@ ${successmsg }
 <jsp:include page="login.jsp"></jsp:include>
 </c:if>
 ${errormsg}
-
-<%-- <c:if test="${showRegistrationPage}"> --%>
-<%--  <jsp:include page="registration.jsp"></jsp:include> --%>
-<%--   </c:if>  --%>
-
-
-<%@include file="footer.jsp" %>
-
-		
-<%-- 		${fname}<br> --%>
-<%-- 		${lname}<br> --%>
-<%-- 		${email} --%>
-		
-		
 		
 	</center>
 </body>

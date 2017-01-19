@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,9 +33,11 @@ public class ProductController {
 		return new  ModelAndView("addproduct");
 	}
 	
-	@RequestMapping("/insertproduct")
+	@RequestMapping(value="/addproduct",method=RequestMethod.POST)
 	public  ModelAndView getProduct(@ModelAttribute Product product,HttpServletRequest hm) {
+		
      servletContext =hm.getServletContext();
+     
      if (!product.getImage().isEmpty()) {
     	 System.out.println("get image");
     	 try {
@@ -62,13 +66,13 @@ public class ProductController {
 			System.out.println("server file location"+serverFile.getAbsolutePath());
 			pservice.insertRow(product);
     	 }
-			return new ModelAndView("addproduct");
+			return new ModelAndView("redirect:plist");
 			} catch (Exception e) {
 				e.printStackTrace();
-				return new ModelAndView("addproduct");
+				return new ModelAndView("redirect:plist");
 			}
 		} else {
-			return new ModelAndView("addproduct");
+			return new ModelAndView("redirect:plist");
 		}
 	
 	}

@@ -19,23 +19,23 @@
 <%@include file="header.jsp" %>
 
 <div class="container">
-  <form:form  class="form-horizontal" action="insertproduct" modelAttribute="product" method="post" enctype="multipart/form-data">
+  <form:form  class="form-horizontal" action="addproduct" modelAttribute="Product" method="POST" enctype="multipart/form-data">
     <div class="form-group">
       <label class="col-md-4 control-label" for="name">ProductName:</label>
       <div class="col-md-4">
-      <input type="text" class="form-control" path="name" name="productName" placeholder="Enter product name">
+      <input type="text" class="form-control" id="name" name="productName" placeholder="Enter product name">
     </div> 
     </div>
     <div class="form-group">
       <label  class="col-md-4 control-label" for="price">Price:</label>
       <div class="col-md-4">
-      <input type="text" class="form-control" path="price" name="price" placeholder="Enter price">
+      <input type="text" class="form-control" id="price" name="price" placeholder="Enter price">
     </div>
     </div>
     <div class="form-group">
     <label  class="col-md-4 control-label" for="quantity">Quantity:</label>
      <div class="col-md-4">
-      <input type="text" class="form-control" path="quantity" name="quantity" placeholder="Enter quantity"> 
+      <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Enter quantity"> 
     </div>
     </div>
      <div class="form-group">
@@ -47,13 +47,13 @@
      <div class="form-group">
       <label  class="col-md-4 control-label" for="suppliername">Supplier Name:</label>
      <div class="col-md-4">
-      <input type="text" class="form-control" path="suppliername" name="supplierName" placeholder="Enter supplier name">
+      <input type="text" class="form-control" id="suppliername" name="supplierName" placeholder="Enter supplier name">
     </div>
     </div>
     <div class="form-group">
       <label  class="col-md-4 control-label" for="image">File:</label>
     <div class="col-md-4">
-    <input type="file" class="form-control" path="image" name="image" placeholder="select a file">
+    <input type="file" class="form-control" id="image" name="image" placeholder="select a file">
 <!--     <input type="submit" value="Upload">  -->
      </div>
      </div>
@@ -64,7 +64,11 @@
     </div>
     </div>
     <center>
-    <button type="submit" class="btn btn-default">Add</button>
+    <button type="submit" class="btn btn-default" >Add</button>
+     <input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+    
+    
     </center>
   </form:form>
 </div>

@@ -18,7 +18,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
            <!-- Enables the Spring MVC @Controller programming model -->
          <mvc:annotation-driven />
           <mvc:resources mapping="/Resources/**" location="/Resources/" />
-     
+     <!-- rules defined to resolve the view names -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">

@@ -9,9 +9,11 @@
  
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
+		<!-- dispatcher servlet is implemented by this class -->
 		<servlet-class>
 			org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
+	<!--  tag tells the servlet container to load this servlet upon start up with highest priority-->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
  
@@ -21,8 +23,9 @@
 	</servlet-mapping>
  
 	<context-param>
+	<!-- this parameter tells Spring where to load configuration files-->
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/Application-Context.xml,/WEB-INF/dispatcher-servlet.xml</param-value>
+		<param-value>/WEB-INF/Application-Context.xml,/WEB-INF/dispatcher-servlet.xml,/WEB-INF/spring-security.xml</param-value>
 	</context-param>
  
 	<listener>
@@ -30,4 +33,23 @@
 			org.springframework.web.context.ContextLoaderListener
 		</listener-class>
 	</listener>
+	<!-- Spring Security Filter -->
+    <filter>
+    <!-- which is responsible for all the security within your application  -->
+        <filter-name>springSecurityFilterChain</filter-name>
+        <!-- provides the link between web.xml and the application context-->
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+ 
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <!-- Publishes HttpSessionApplicationEvents to the Spring Root WebApplicationContext. Maps javax.servlet.http.HttpSessionListener.
+    sessionCreated() to HttpSessionCreatedEvent. Maps javax.servlet.http.HttpSessionListener.
+    sessionDestroyed() to HttpSessionDestroyedEvent. -->
+     <listener>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+    </listener>
 </web-app>
