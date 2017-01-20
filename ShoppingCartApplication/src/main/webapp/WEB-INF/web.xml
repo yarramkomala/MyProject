@@ -45,11 +45,4 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
-    <!-- Publishes HttpSessionApplicationEvents to the Spring Root WebApplicationContext. Maps javax.servlet.http.HttpSessionListener.
-    sessionCreated() to HttpSessionCreatedEvent. Maps javax.servlet.http.HttpSessionListener.
-    sessionDestroyed() to HttpSessionDestroyedEvent. -->
-     <listener>
-        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
-    </listener>
 </web-app>

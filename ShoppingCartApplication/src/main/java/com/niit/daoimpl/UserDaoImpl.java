@@ -1,5 +1,7 @@
 package com.niit.daoimpl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.domain.UserInfo;
+import com.niit.domain.UserRoles;
 import com.niit.dao.UserDao;
 @Repository
 @EnableTransactionManagement
@@ -22,9 +25,34 @@ public class UserDaoImpl implements UserDao{
 	public void insertRow(UserInfo userinfo) {
 		Session session = sessionFactory.getCurrentSession();	
 
-	session.save(userinfo);
+	
+	userinfo.setEnabled(true);
+	UserRoles r= new UserRoles();
+	r.setUserinfo(userinfo);
+	r.setRole("ROLE_USER");
+	session.saveOrUpdate(userinfo);	
+	session.saveOrUpdate(r);
 	
 	
+	}
+
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<UserInfo> getUserid() {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("from USERINFO").list();
+	}
+
+
+
+	@Override
+	public List<UserInfo> getUserNamePassword() {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().createQuery("from USERINFO where USERNAME=? AND 	PASSWORD=?").list();
+		return null;
 	}
 	
 		

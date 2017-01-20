@@ -1,40 +1,41 @@
 package com.niit.domain;
 
 import java.io.Serializable;
-import java.util.Set;
-import com.niit.domain.*;
-
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
 public class UserRoles implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	UserRoles() {
+	public UserRoles() {
 	}
 
 	@Id
 	private int rid;
 	private String role;
 
-	@OneToOne
-	@JoinColumn(name = "userid")
-	private UserInfo userid;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="USERID")
+	private UserInfo userinfo;
 
-	public UserInfo getUserid() {
-		return userid;
+	
+
+	public UserInfo getUserinfo() {
+		return userinfo;
 	}
 
-	public void setUserid(UserInfo userid) {
-		this.userid = userid;
+	public void setUserinfo(UserInfo userinfo) {
+		this.userinfo = userinfo;
 	}
 
 	public int getRid() {

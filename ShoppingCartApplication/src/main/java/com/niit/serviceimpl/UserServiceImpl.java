@@ -1,5 +1,7 @@
 package com.niit.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,24 @@ public class UserServiceImpl implements UserService {
     	  userDao.insertRow(userinfo);
 		
 		
+	}
+
+
+
+	@Override
+	@Transactional
+	public List<UserInfo> getUserid() {
+		
+		return userDao.getUserid();
+	}
+
+
+
+	@Override
+	public List<UserInfo> getUserNamePassword() {
+		// TODO Auto-generated method stub
+	
+		return 	userDao.getUserNamePassword();
 	}
 
 	

@@ -12,13 +12,14 @@
 
 	<context:component-scan base-package="com.niit.*"></context:component-scan>
 	<mvc:annotation-driven />
+	<!--dataSource information -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="org.h2.Driver" />
 		<property name="url" value="jdbc:h2:tcp://localhost/~/test" />
 		<property name="username" value="sa" />
 		<property name="password" value="sa" />
 	</bean>
-
+<!-- sessionFactory information -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -46,7 +47,6 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-
-	<!-- <mapping name="com.niit.domain.UserInfo"></mapping> -->
-</beans>
+	</beans>
+	
 

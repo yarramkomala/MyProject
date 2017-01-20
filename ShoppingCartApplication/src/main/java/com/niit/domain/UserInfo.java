@@ -1,24 +1,20 @@
 package com.niit.domain;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import org.springframework.stereotype.Component;
 
 @Entity
+@Component
 public class UserInfo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userid;
 
+	
 	private String username;
 
 	private String password;
