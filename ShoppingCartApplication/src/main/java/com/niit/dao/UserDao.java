@@ -9,7 +9,7 @@ public interface UserDao {
 	public void insertRow(UserInfo userinfo);
 	
 	 public List<UserInfo> getUserid();
-	 public List<UserInfo> getUserNamePassword();
-	 
 	
+	 public UserInfo getByUserName(String username,String password);
+
 }

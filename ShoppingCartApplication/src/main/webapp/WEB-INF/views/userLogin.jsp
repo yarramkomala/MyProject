@@ -30,27 +30,22 @@
 
 </head>
 <body >
+
 <%@include file="header.jsp" %>
 
-
-	<div class="container" >
-   <c:if test="${not empty error}">
-			<div class="error">${error}</div>
-		</c:if>
-		<c:if test="${not empty msg}">
-			<div class="msg">${msg}</div>
-		</c:if>
-
   <h2>Login Form</h2>
-  <form name='login'
-		  action="<c:url value='/j_spring_security_check' />" method='POST'>
+  <form name="login"
+		   action="login"  method="POST">
+		    <tr>
+                     <td colspan="2" style="color: red">${message}</td>
+                  </tr>
     <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" name="email" placeholder="Enter email">
+      <label for="email">Username:</label>
+      <input type="email" class="form-control" name="username" placeholder="Enter email">
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control" name="pwd" placeholder="Enter password">
+      <input type="password" class="form-control" name="password" placeholder="Enter password">
     </div>
     <div class="checkbox">
       <label><input type="checkbox"> Remember me</label>
@@ -62,17 +57,6 @@
     
   </form>
 </div>
-${successmsg }
-<c:if test="${getLogin}">
-<jsp:include page="login.jsp"></jsp:include>
-</c:if>
-
-<c:if test="not empty ${errormsg}">
-
-<jsp:include page="login.jsp"></jsp:include>
-</c:if>
-${errormsg}
-		
 	</center>
 </body>
 </html>

@@ -3,6 +3,8 @@ package com.niit.domain;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -21,21 +23,20 @@ public class UserRoles implements Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int rid;
 	private String role;
 
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="USERID")
-	private UserInfo userinfo;
+	@OneToOne
+	@JoinColumn(name = "USERID")
+	private UserInfo userid;
 
-	
-
-	public UserInfo getUserinfo() {
-		return userinfo;
+	public UserInfo getUserid() {
+		return userid;
 	}
 
-	public void setUserinfo(UserInfo userinfo) {
-		this.userinfo = userinfo;
+	public void setUserid(UserInfo userid) {
+		this.userid = userid;
 	}
 
 	public int getRid() {

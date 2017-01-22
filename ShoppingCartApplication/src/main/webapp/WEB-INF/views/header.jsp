@@ -14,6 +14,15 @@
 			<a class="navbar-brand" href="#">WebSiteName</a>
 		</div>
 		<ul class="nav navbar-nav">
+      <li><a href="index" style="color:white"><b>Home</b></a></li>
+      <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+      <li><a href="<c:url value="logout" />" style="color:white"><b>Logout</b></a></li>
+      </sec:authorize>
+      <li><a href="register" style="color:white"><b>Contact US</b></a></li>
+     
+   
+    </ul>
+		<ul class="nav navbar-nav">
 			<li class="active"><a href="uhome">Home</a></li>
 			<li><a href="#">Page 1</a></li>
 			<li><a href="#">Page 2</a></li>

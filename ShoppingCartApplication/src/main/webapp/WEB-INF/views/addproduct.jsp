@@ -19,7 +19,7 @@
 <%@include file="header.jsp" %>
 
 <div class="container">
-  <form:form  class="form-horizontal" action="addproduct" modelAttribute="Product" method="POST" enctype="multipart/form-data">
+  <form:form  class="form-horizontal" action="product" modelAttribute="Product" method="POST" enctype="multipart/form-data">
     <div class="form-group">
       <label class="col-md-4 control-label" for="name">ProductName:</label>
       <div class="col-md-4">

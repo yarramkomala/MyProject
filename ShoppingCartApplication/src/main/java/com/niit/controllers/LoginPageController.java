@@ -7,55 +7,36 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.dao.UserDao;
+import com.niit.domain.Product;
 import com.niit.domain.UserInfo;
+import com.niit.service.ProductService;
 import com.niit.service.UserService;;
 
 @Controller
 public class LoginPageController {
 	@Autowired
 	UserService userservice;
-	@RequestMapping("/")
-	public String getHome() {
-
+	@Autowired
+	UserDao userDao;
+	@Autowired
+	ProductService productservice;
+	@RequestMapping(value={"/","/uhome"})
+	public String getHome(Map<String, Object>map) {
+		Product productResult = new Product();
+		map.put("productModel",productResult);
+	    map.put("productmodelList", productservice.getProductList());
 		return "index";
 	}
-	@RequestMapping("/uhome")
-	public String getindex() {
-
-		return "index";
-	}
-	@RequestMapping("/login")
-	public String login(){
-		return "login";
-	}
-	 @RequestMapping(value = "/admin", method = RequestMethod.GET)
-	    public String adminPage(ModelMap model) {
-	        model.addAttribute("user", getPrincipal());
-	        return "admin";
-//	@RequestMapping("/login")
-//	
-//		public ModelAndView login(@ModelAttribute UserInfo userinfo,@RequestParam("pwd") String pwd,@RequestParam("email") String email) {
-//
-//			  ModelAndView model = new ModelAndView("login");
-////			  userservice.
-////			  if (error != null) {
-////				model.addObject("error", "Invalid username and password!");
-////			  }
-////
-////			  if (logout != null) {
-////				model.addObject("msg", "You've been logged out successfully.");
-////			  }
-//			if(userinfo.getUsername()==email && userinfo.getPassword()==pwd){
-//				 return model;
-//			}
-//
-//			  return model;
-//
-//			}
 	
-		
+//	@RequestMapping("/login")
+//	public String login(@RequestParam(value="email") String email,@RequestParam(value="password") String pwd){
+//		
+//		
+//		return "login";
+//	}
+	
 	@RequestMapping("/register")
 	public String getRegister(Map<String,Object> map) {
 	UserInfo userinfo=new UserInfo();
@@ -71,7 +52,7 @@ public class LoginPageController {
 
 		userservice.insertRow(userinfo);
 		
-		return "login";
+		return "security/login";
 	}
 	
 }

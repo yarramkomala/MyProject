@@ -5,33 +5,36 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/security
     http://www.springframework.org/schema/security/spring-security-4.2.xsd">
-    <http auto-config="true" >
-    <!-- Restrict URLs based on role -->
-        <intercept-url pattern="/" access="permitAll" />
-        <intercept-url pattern="/home" access="permitAll" />
-        <intercept-url pattern="/admin**" access="hasRole('ADMIN')" />
-        <intercept-url pattern="/dba**" access="hasRole('ADMIN') and hasRole('DBA')" />
-       <!-- Override default login and logout pages -->
-		   <form-login login-processing-url="/j_spring_security_check" 
-		   login-page="/login" 
-		   default-target-url="/"
-            authentication-failure-url="/login?error"
-             username-parameter="username"
-            password-parameter="password" />
-		<logout logout-success-url="/login?logout"  />
+    <!-- enable use-expressions -->
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/welcome" access="hasRole('ROLE_USER')" />
+		
+		
+		<!-- access denied page -->
+		<access-denied-handler error-page="/403" />
+		<form-login 
+		    login-page="/login" 
+		    login-processing-url="/j_spring_security_check"
+		    default-target-url="/admin" 
+			authentication-failure-url="/login?error" 
+			username-parameter="username"
+			password-parameter="password" />
+		<logout logout-success-url="/" invalidate-session="true" logout-url="/j_spring_security_logout" />
 		<!-- enable csrf protection -->
-		        <csrf disabled="true" />
-    </http>
-   <!--The authentication is set to use jdbc based user authentication.-->
-    <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="komali@gmail.com" password="komali" authorities="ROLE_ADMIN" />
-            </user-service>
-            <jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="select username,password,enabled from USERINFO where username=?"
-				authorities-by-username-query="select u1.username, u2.role from USERINFO u1, USERROLES u2 where u1.userid = u2.userid and u1.username =?" />
-        </authentication-provider>
-    </authentication-manager>
+	 <csrf disabled="true" />
     
+	</http>
+	
+	<!-- Select users and user_roles from database -->
+	<authentication-manager>
+	 
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query=
+					"select username,password, enabled from userinfo where username=?"
+				authorities-by-username-query=
+					"select u1.username, u2.role from userinfo u1,userroles u2 where u1.username =? " />
+		</authentication-provider>
+	</authentication-manager>
     </beans:beans>

@@ -9,38 +9,29 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.dao.UserDao;
 import com.niit.domain.UserInfo;
 import com.niit.service.UserService;
+
 @Service
 public class UserServiceImpl implements UserService {
-	 @Autowired
-	 UserDao userDao;
-	 
-      
-	
+	@Autowired
+	UserDao userDao;
+
 	@Transactional
 	public void insertRow(UserInfo userinfo) {
-    	  userDao.insertRow(userinfo);
-		
-		
+		userDao.insertRow(userinfo);
+
 	}
-
-
 
 	@Override
 	@Transactional
 	public List<UserInfo> getUserid() {
-		
+
 		return userDao.getUserid();
 	}
 
-
-
 	@Override
-	public List<UserInfo> getUserNamePassword() {
+	public UserInfo getUserName(String username, String password) {
 		// TODO Auto-generated method stub
-	
-		return 	userDao.getUserNamePassword();
+		return userDao.getByUserName(username, password);
 	}
 
-	
-	
 }

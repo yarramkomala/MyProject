@@ -33,7 +33,7 @@ public class ProductController {
 		return new  ModelAndView("addproduct");
 	}
 	
-	@RequestMapping(value="/addproduct",method=RequestMethod.POST)
+	@RequestMapping(value="/product",method=RequestMethod.POST)
 	public  ModelAndView getProduct(@ModelAttribute Product product,HttpServletRequest hm) {
 		
      servletContext =hm.getServletContext();

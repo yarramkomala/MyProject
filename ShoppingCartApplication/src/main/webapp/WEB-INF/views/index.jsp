@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ taglib prefix="c" 
-           uri="http://java.sun.com/jsp/jstl/core" %>
-           <%@taglib prefix="sec"
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,42 +16,17 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- <style>
-  .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-      width: 70%;
-      margin: auto;
-      hieght:auto;
-  }
-  </style>
+<style>
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+	width: 70%;
+	margin: auto;
+	hieght: auto;
+}
+</style>
 </head>
 <body>
-	
-	<%@include file="header.jsp" %>
-	
-	<sec:authorize access="hasRole('ROLE_USER')">
-		<!-- For login user -->
-		<c:url value="/j_spring_security_logout" var="logoutUrl" />
-		<form action="${logoutUrl}" method="post" id="logoutForm">
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-		</form>
-		<script>
-			function formSubmit() {
-				document.getElementById("logoutForm").submit();
-			}
-		</script>
 
-		<c:if test="${pageContext.request.userPrincipal.name != null}">
-			<h2>
-				User : ${pageContext.request.userPrincipal.name} | <a
-					href="javascript:formSubmit()"> Logout</a>
-			</h2>
-		</c:if>
-
-
-	</sec:authorize>
-	
+	<%@include file="header.jsp"%>
 	<div>
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
@@ -66,23 +40,27 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
-<!-- 					<img class="img-responsive" src="Resources/images/cr1.jpg" alt="Chania"  width="500" height="200" > -->
-					<img src="Resources/images/cr1.jpg" class="img-fluid" alt="Responsive image">
+					<!-- 					<img class="img-responsive" src="Resources/images/cr1.jpg" alt="Chania"  width="500" height="200" > -->
+					<img src="Resources/images/cr1.jpg" class="img-fluid"
+						alt="Responsive image">
 				</div>
 
 				<div class="item">
-<!-- 					<img  class="img-responsive" src="Resources/images/2.jpg" alt="Chania"  > -->
-					<img src="Resources/images/cr3.jpg" class="img-fluid" alt="Responsive image">
+					<!-- 					<img  class="img-responsive" src="Resources/images/2.jpg" alt="Chania"  > -->
+					<img src="Resources/images/cr3.jpg" class="img-fluid"
+						alt="Responsive image">
 				</div>
-                    <div class="item">
-<!-- 					<img class="img-responsive" src="Resources/images/3.jpg" alt="Flower"  > -->
-					<img src="Resources/images/cr2.jpg" class="img-fluid" alt="Responsive image" height="500">
+				<div class="item">
+					<!-- 					<img class="img-responsive" src="Resources/images/3.jpg" alt="Flower"  > -->
+					<img src="Resources/images/cr2.jpg" class="img-fluid"
+						alt="Responsive image" height="500">
 				</div>
-				
+
 
 				<div class="item">
-<!-- 					<img class="img-responsive" src="Resources/images/4.jpg" alt="Flower"  > -->
-					<img src="Resources/images/4.jpg" class="img-fluid" alt="Responsive image" height="300">
+					<!-- 					<img class="img-responsive" src="Resources/images/4.jpg" alt="Flower"  > -->
+					<img src="Resources/images/4.jpg" class="img-fluid"
+						alt="Responsive image" height="300">
 				</div>
 			</div>
 
@@ -91,17 +69,17 @@
 				data-slide="prev"> <span
 				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 				<span class="sr-only">Previous</span>
-			</a> <a class="right carousel-control" href="#myCarousel" role="button"data-slide="next">
-				 
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			</a> <a class="right carousel-control" href="#myCarousel" role="button"
+				data-slide="next"> <span
+				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
 			</a>
 		</div>
 	</div>
-	
-	${greeting}
-	
-<%@include file="footer.jsp" %>
-
+	<%@include file="footer.jsp"%>
+<c:if test="not empty ${error}">
+<jsp:include page="userLogin.jsp"></jsp:include>
+</c:if>
+<h1>MAHESH</h1>
 </body>
 </html>
