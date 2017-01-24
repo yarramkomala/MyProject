@@ -22,7 +22,7 @@ public class LoginPageController {
 	UserDao userDao;
 	@Autowired
 	ProductService productservice;
-	@RequestMapping(value={"/","/uhome"})
+	@RequestMapping(value={"/","/uhome","/index"})
 	public String getHome(Map<String, Object>map) {
 		Product productResult = new Product();
 		map.put("productModel",productResult);
@@ -30,13 +30,7 @@ public class LoginPageController {
 		return "index";
 	}
 	
-//	@RequestMapping("/login")
-//	public String login(@RequestParam(value="email") String email,@RequestParam(value="password") String pwd){
-//		
-//		
-//		return "login";
-//	}
-	
+
 	@RequestMapping("/register")
 	public String getRegister(Map<String,Object> map) {
 	UserInfo userinfo=new UserInfo();
@@ -52,7 +46,7 @@ public class LoginPageController {
 
 		userservice.insertRow(userinfo);
 		
-		return "security/login";
+		return "login";
 	}
 	
 }

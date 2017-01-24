@@ -40,7 +40,7 @@
 		</c:if>
 
 		<form name='loginForm'
-			action="<c:url value='/j_spring_security_check' />" method='POST'>
+			action="<c:url value='/j_spring_security_check' />" method='POST' id="target">
 
 			<div class="form-group">
       <label for="email">Username:</label>
