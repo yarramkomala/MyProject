@@ -27,6 +27,7 @@
 <body>
 
 	<%@include file="header.jsp"%>
+	Welcome ${userinfo.fname }
 	<div>
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->

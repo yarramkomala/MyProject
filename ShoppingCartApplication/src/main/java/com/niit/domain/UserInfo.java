@@ -1,5 +1,8 @@
 package com.niit.domain;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,13 +11,21 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class UserInfo {
+public class UserInfo implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+public  UserInfo(){
+	
+}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userid;
 
-	
+	@Column(unique = true)
 	private String username;
 
 	private String password;
@@ -35,8 +46,7 @@ public class UserInfo {
 		this.userid = userid;
 	}
 
-	public UserInfo() {
-	}
+
 
 	public String getUsername() {
 		return username;

@@ -19,7 +19,7 @@
 <%@include file="header.jsp" %>
 <center>
 <div class="container">
-  <form:form action="pupdate" modelAttribute="product" method="post">
+  <form:form action="pupdate" modelAttribute="product" method="post" enctype="multipart/form-data">
      <table width="400px" height="150px">
     <tr>
     <div class="form-group">
@@ -36,7 +36,7 @@
     <tr>
     <div class="form-group">
      <td><form:label path="quantity">Quantity</form:label></td>
-     <td><form:input path="quantity" class="form-control" value="${productObject.quantity}"/></td>
+     <td><form:input  path="quantity" class="form-control" value="${productObject.quantity}"/></td>
    </div>
     </tr>
     <tr>
@@ -51,7 +51,13 @@
      <td><form:input path="supplierName" class="form-control" value="${productObject.supplierName}"/></td>
      </div>
      </tr>
+     <tr>
+     <div class="form-group">
+     <td><form:label path="image">File</form:label></td>
+     <td><form:input type="file" path="image" class="form-control" value="${productObject.image}"/></td>
+     </div></tr>
        <tr>
+       
     <div class="form-group">
      <td><form:label path="description">Description</form:label></td>
      <td><form:input path="description" class="form-control" value="${productObject.description}"/></td>

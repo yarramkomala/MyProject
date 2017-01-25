@@ -58,7 +58,7 @@
   </table>
 </div>
 </c:if>
-<a href="addproduct">Click Here to add new User</a>
+<a href="admin">Click Here to add new User</a>
 <%@include file="footer.jsp" %>
 </body>
 </html>

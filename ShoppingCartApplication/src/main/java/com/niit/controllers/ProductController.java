@@ -27,7 +27,7 @@ public class ProductController {
 	ProductService pservice;
 	Product productObject=null;
 	ServletContext servletContext;
-	@RequestMapping("/addproduct")
+	@RequestMapping("/admin")
 	public  ModelAndView  getProductPage(@ModelAttribute Product product) {
 
 		return new  ModelAndView("addproduct");
@@ -97,12 +97,49 @@ public class ProductController {
 	 }
 
 	 @RequestMapping("/pupdate")
-	 public ModelAndView updateUser(@ModelAttribute Product product) {
+	 public ModelAndView updateUser(@ModelAttribute Product product,HttpServletRequest hm) {
 		 int id = productObject.getId();
 		 System.out.println(id);
 		 product.setId(id);
-		 pservice.updateRow(product);
-	  return new ModelAndView("redirect:plist");
+		 servletContext =hm.getServletContext();
+	     
+	     if (!product.getImage().isEmpty()) {
+	    	 System.out.println("get image");
+	    	 try {
+	    		 System.out.println("get image "+servletContext);
+				byte[] bytes = product.getImage().getBytes();
+				System.out.println("get image "+servletContext.getRealPath("/"));
+				// Creating the directory to store file
+				String rootPath = servletContext.getRealPath("/");
+				
+				System.out.println("get image "+rootPath);
+				File dir = new File(rootPath + File.separator + "Resources/images");
+				System.out.println("filee "+dir.toString());
+				if (!dir.exists()){
+					System.out.println("filee "+dir.exists());	
+					dir.mkdirs();
+	    	 }else{
+	    		 System.out.println("filee "+dir.exists());
+				// Create the file on server
+				File serverFile = new File(dir.getAbsolutePath()
+						+ File.separator +product.getproductName()+".jpg");
+				System.out.println(serverFile);
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+				System.out.println("server file location"+serverFile.getAbsolutePath());
+				 pservice.updateRow(product);
+	    	 
+	    	 }
+				return new ModelAndView("redirect:plist");
+				} catch (Exception e) {
+					e.printStackTrace();
+					return new ModelAndView("redirect:plist");
+				}
+			} else {
+				return new ModelAndView("redirect:plist");
+			}
 	 }
 	 @RequestMapping("/disimage")
 	 public  ModelAndView  getProductImages(@ModelAttribute Product product,Map<String,Object> map) {

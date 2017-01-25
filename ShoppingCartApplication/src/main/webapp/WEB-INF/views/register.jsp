@@ -1,6 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -129,10 +130,10 @@ body {
 </style>
 </head>
 <body>
-	<%@include file="header.jsp"%>
+<%-- 	<%@include file="header.jsp"%> --%>
 	<br />
-	<form action="register.do" method="post" commandName="user">
-
+	<form:form  modelAttribute="userinfo">
+<a href="${flowExecutionUrl}&_eventId_home">Home</a>
 		<div class="container">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
@@ -144,45 +145,68 @@ body {
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-user mycolor"></i></span> <input size="60"
 							maxlength="255" class="form-control" placeholder="User Name"
-							name="username" id="UserRegistration_username" type="email">
+							name="username" path="username" type="email">
 					</div>
+					<!-- to display validation messages -->
+					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('username')}" var="err">
+					  <div><span>${err.text}</span></div>
+					</c:forEach><br />
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-lock mycolor"></i></span> <input size="60"
 							maxlength="255" class="form-control" placeholder="Password"
-							name="password" id="UserRegistration_password" type="password">
+							name="password" path="password" type="password">
 					</div>
+					<!-- to display validation messages -->
+					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('password')}" var="err">
+					  <div><span>${err.text}</span></div>
+					</c:forEach><br />
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-user mycolor"></i></span> <input size="60"
 							maxlength="255" class="form-control" placeholder="First Name"
-							name="fname" id="UserRegistration_fname" type="text">
+							name="fname" path="fname" type="text">
 					</div>
+					<!-- to display validation messages -->
+					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('fname')}" var="err">
+					  <div><span>${err.text}</span></div>
+					</c:forEach><br />
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-user mycolor"></i></span> <input size="60"
 							maxlength="255" class="form-control" placeholder="Last Name"
-							name="lname" id="UserRegistration_lname" type="text">
+							name="lname" path="lname" type="text">
 					</div>
+					<!-- to display validation messages -->
+					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('lname')}" var="err">
+					  <div><span>${err.text}</span></div>
+					</c:forEach><br />
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-envelope mycolor"></i></span> <input
 							size="60" maxlength="255" class="form-control"
 							placeholder="Address" name="address"
-							id="UserRegistration_address" type="text">
+							path="address" type="text">
 					</div>
+					<!-- to display validation messages -->
+					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('address')}" var="err">
+					  <div><span>${err.text}</span></div>
+					</c:forEach><br />
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-phone mycolor"></i></span> <input size="60"
 							maxlength="255" class="form-control" placeholder="Contact Number"
-							name="contactnumber" id="UserRegistration_contactnumber"
+							name="contactnumber" path="contactnumber"
 							type="text">
 					</div>
+					<!-- to display validation messages -->
+					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('contactnumber')}" var="err">
+					  <div><span>${err.text}</span></div>
+					</c:forEach><br />
 					<div class="row">
 						<div class="col-md-12">
-							<button class="btn-u pull-left" type="submit" name="action"
-								value="add">Sign Up</button>
-
+						
+<input name="_eventId_submit" type="submit" value="Submit" /><br >
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</div>
@@ -191,8 +215,8 @@ body {
 				<div class="col-md-2"></div>
 			</div>
 		</div>
-	</form>
+	</form:form>
 
-	<%@include file="footer.jsp"%>
+<%-- 	<%@include file="footer.jsp"%> --%>
 </body>
 </html>

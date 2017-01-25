@@ -22,32 +22,34 @@ public class LoginPageController {
 	UserDao userDao;
 	@Autowired
 	ProductService productservice;
-	@RequestMapping(value={"/","/uhome","/index"})
+	@RequestMapping(value={"/","/index","/home"})
 	public String getHome(Map<String, Object>map) {
 		Product productResult = new Product();
 		map.put("productModel",productResult);
 	    map.put("productmodelList", productservice.getProductList());
 		return "index";
 	}
+
 	
 
-	@RequestMapping("/register")
-	public String getRegister(Map<String,Object> map) {
-	UserInfo userinfo=new UserInfo();
-	map.put("userinfo", userinfo);
+//	@RequestMapping("/register")
+//	public String getRegister() {
+//UserInfo userinfo=new UserInfo();
+//	map.put("userinfo", userinfo);
+//	
+//	System.out.println(userinfo);
+//		
+//		return "register";
+//		}}
 	
-	System.out.println(userinfo);
-		
-		return "register";
-	}
-	@RequestMapping("/register.do")
-	public String doAction(@ModelAttribute UserInfo userinfo,BindingResult result,@RequestParam String action,Map<String,Object> map){
-		
+//	@RequestMapping("/register.do")
+//	public String doAction(@ModelAttribute UserInfo userinfo,BindingResult result,@RequestParam String action,Map<String,Object> map){
+//		
+//
+//		userservice.insertRow(userinfo);
+//		
+//		return "index";
+//	}
+//	
 
-		userservice.insertRow(userinfo);
-		
-		return "login";
-	}
-	
 }
-
