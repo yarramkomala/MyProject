@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="row">
-
+<%@include file="header.jsp"%>
  <c:forEach  items="${productList}" var="product"> 
  <div class="col-xs-3">
  <div class="thumbnail zoom" id="exi">
@@ -25,9 +25,10 @@
 </div>
  </div>
 </c:forEach>
+
 </div>
 
 
-
+<%@include file="footer.jsp"%>
 </body>
 </html>

@@ -28,10 +28,6 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUserid();
 	}
 
-	@Override
-	public UserInfo getUserName(String username, String password) {
-		// TODO Auto-generated method stub
-		return userDao.getByUserName(username, password);
-	}
+	
 
 }

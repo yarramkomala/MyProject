@@ -27,7 +27,7 @@
 <body>
 
 	<%@include file="header.jsp"%>
-	Welcome ${userinfo.fname }
+<%-- 	 Welcome ${userinfo.fname } --%>
 	<div>
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
@@ -42,7 +42,7 @@
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
 					<!-- 					<img class="img-responsive" src="Resources/images/cr1.jpg" alt="Chania"  width="500" height="200" > -->
-					<img src="Resources/images/cr1.jpg" class="img-fluid"
+					<img src="Resources/images/cr1.jpg" class="img-fluid" width="500" height="200"
 						alt="Responsive image">
 				</div>
 
@@ -81,6 +81,5 @@
 <c:if test="not empty ${error}">
 <jsp:include page="userLogin.jsp"></jsp:include>
 </c:if>
-<h1>MAHESH</h1>
 </body>
 </html>

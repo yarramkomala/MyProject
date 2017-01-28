@@ -1,5 +1,7 @@
 package com.niit.webflow;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
@@ -12,12 +14,15 @@ import com.niit.service.UserService;
 public class Demohandler {
 	@Autowired
 	UserService userservice;
+	
 	public UserInfo initFlow(){
 		return new UserInfo();
 	}
- 
-	public String validateDetails(UserInfo userinfo,MessageContext messageContext){
+    //validating user details
+	public String validateDetails(@Valid UserInfo userinfo,MessageContext messageContext){
 		String status = "success";
+
+		
 		if(userinfo.getUsername().isEmpty()){
 			messageContext.addMessage(new MessageBuilder().error().source(
 					"username").defaultText("Username cannot be Empty").build());
@@ -50,6 +55,8 @@ public class Demohandler {
 		}
 		return status;
 	}
+	
+	//saving registered user details to database
 	public String doregAction(UserInfo userinfo){
 		UserRoles r=new UserRoles();
 		r.setRole("ROLE_USER");

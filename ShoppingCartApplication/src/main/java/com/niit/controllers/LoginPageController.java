@@ -1,6 +1,8 @@
 package com.niit.controllers;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -14,14 +16,16 @@ import com.niit.domain.UserInfo;
 import com.niit.service.ProductService;
 import com.niit.service.UserService;;
 
-@Controller
+@Controller //which specifies this is a controller class
 public class LoginPageController {
-	@Autowired
+	@Autowired //auto wire the bean by matching data type.
 	UserService userservice;
 	@Autowired
 	UserDao userDao;
 	@Autowired
 	ProductService productservice;
+	
+	//method for index page
 	@RequestMapping(value={"/","/index","/home"})
 	public String getHome(Map<String, Object>map) {
 		Product productResult = new Product();
@@ -43,12 +47,16 @@ public class LoginPageController {
 //		}}
 	
 //	@RequestMapping("/register.do")
-//	public String doAction(@ModelAttribute UserInfo userinfo,BindingResult result,@RequestParam String action,Map<String,Object> map){
+//	public String doAction(@Valid @ModelAttribute UserInfo userinfo,BindingResult result,@RequestParam String action,Map<String,Object> map){
 //		
-//
-//		userservice.insertRow(userinfo);
+//		  if (result.hasErrors()) {
+//	            return "failure";
+//	        }
+//	 
+//	      
+////		userservice.insertRow(userinfo);
 //		
-//		return "index";
+//		return "success";
 //	}
 //	
 

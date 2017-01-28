@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
 	SessionFactory sessionFactory;
 
 	@Override
-	@Transactional
+	@Transactional //The database transaction happens inside this method
 	public void insertRow(UserInfo userinfo) {
 		Session session = sessionFactory.getCurrentSession();
 
@@ -41,12 +41,6 @@ public class UserDaoImpl implements UserDao {
 		return sessionFactory.getCurrentSession().createQuery("from USERINFO").list();
 	}
 
-	@Override
-	@Transactional
-	public UserInfo getByUserName(String username, String password) {
-
-		return (UserInfo) sessionFactory.getCurrentSession()
-				.createQuery("from USERINFO where USERNAME=? AND 	PASSWORD=? where USERNAME=?").list();
-	}
+	
 
 }

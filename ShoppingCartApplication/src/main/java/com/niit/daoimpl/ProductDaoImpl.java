@@ -13,14 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.dao.ProductDao;
 import com.niit.domain.Product;
-@Repository
+@Repository //creating bean for this class and importing DAO into DI container 
 public class ProductDaoImpl implements ProductDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
 	@Override
-	@Transactional
+	@Transactional //The database transaction happens inside this method
 	public int insertRow(Product product) {
 		Session session = sessionFactory.openSession();
 		  Transaction tx = session.beginTransaction();

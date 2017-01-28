@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,14 +28,15 @@ public class ProductController {
 	ProductService pservice;
 	Product productObject=null;
 	ServletContext servletContext;
+	//for admin getting addproduct page
 	@RequestMapping("/admin")
-	public  ModelAndView  getProductPage(@ModelAttribute Product product) {
+	public  ModelAndView  getProductPage( @ModelAttribute Product product) {
 
 		return new  ModelAndView("addproduct");
 	}
-	
+	//for adding product details into database
 	@RequestMapping(value="/product",method=RequestMethod.POST)
-	public  ModelAndView getProduct(@ModelAttribute Product product,HttpServletRequest hm) {
+	public  ModelAndView getProduct(@Valid @ModelAttribute Product product,HttpServletRequest hm,BindingResult result) {
 		
      servletContext =hm.getServletContext();
      
@@ -64,8 +66,11 @@ public class ProductController {
 			stream.write(bytes);
 			stream.close();
 			System.out.println("server file location"+serverFile.getAbsolutePath());
+			
+			
 			pservice.insertRow(product);
     	 }
+			
 			return new ModelAndView("redirect:plist");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -76,26 +81,26 @@ public class ProductController {
 		}
 	
 	}
-    
+	//for getting list of products
 	 @RequestMapping("/plist")
 	 public ModelAndView getPList() {
 	  List productList = pservice.getProductList();
 	  return new ModelAndView("productlist", "productList", productList);
 	 }
-
+     //for deleting product
 	 @RequestMapping("/pdelete")
 	 public ModelAndView deleteUser(@RequestParam int id) {
 	  pservice.deleteRow(id);
 	  return new ModelAndView("redirect:plist");
 	 }
-
+     //for editing details of product
 	 @RequestMapping("/pedit")
 	 public ModelAndView editUser(@RequestParam int id,
 	   @ModelAttribute Product product) {
 	   productObject = pservice.getRowById(id);
 	  return new ModelAndView("pedit", "productObject", productObject);
 	 }
-
+     //updating products into database
 	 @RequestMapping("/pupdate")
 	 public ModelAndView updateUser(@ModelAttribute Product product,HttpServletRequest hm) {
 		 int id = productObject.getId();
@@ -141,6 +146,7 @@ public class ProductController {
 				return new ModelAndView("redirect:plist");
 			}
 	 }
+	 //for displaying product details to user
 	 @RequestMapping("/disimage")
 	 public  ModelAndView  getProductImages(@ModelAttribute Product product,Map<String,Object> map) {
 		ModelAndView mv= new  ModelAndView("pimage");

@@ -10,6 +10,6 @@ public interface UserDao {
 	
 	 public List<UserInfo> getUserid();
 	
-	 public UserInfo getByUserName(String username,String password);
+	
 
 }

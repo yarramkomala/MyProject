@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-@Controller
+@Controller //which marks class as a spring web mvc controller.which is automatically imported to DI. 
 public class AdminController {
 String error=null;
-
-
+      //method for login page
+     //@RequestMapping maps URLs to instance methods of a class
 	@RequestMapping(value = {"/login","/userlogin"}, method = RequestMethod.GET)
 	public ModelAndView login(@RequestParam( required = false) String error, String denied,String logout) {
 		
@@ -47,6 +47,7 @@ String error=null;
 		return "403";
 
 	}
+	//for logout page
 	@RequestMapping("/logout")
 	public String showLoggedout(HttpServletRequest request,HttpServletResponse response){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

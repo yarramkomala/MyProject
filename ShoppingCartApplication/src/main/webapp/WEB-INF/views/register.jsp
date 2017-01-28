@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -130,10 +130,10 @@ body {
 </style>
 </head>
 <body>
-<%-- 	<%@include file="header.jsp"%> --%>
+	<%-- 	<%@include file="header.jsp"%> --%>
 	<br />
-	<form:form  modelAttribute="userinfo">
-<a href="${flowExecutionUrl}&_eventId_home">Home</a>
+	<form:form modelAttribute="userinfo">
+		<a href="${flowExecutionUrl}&_eventId_home">Home</a>
 		<div class="container">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
@@ -144,69 +144,106 @@ body {
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-user mycolor"></i></span> <input size="60"
-							maxlength="255" class="form-control" placeholder="User Name"
-							name="username" path="username" type="email">
+							maxlength="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+							required="true" title="ex1@ex.com" "class="form-control"
+							placeholder="User Name" name="username" path="username"
+							type="email">
 					</div>
 					<!-- to display validation messages -->
-					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('username')}" var="err">
-					  <div><span>${err.text}</span></div>
-					</c:forEach><br />
+					<c:forEach
+						items="${flowRequestContext.messageContext.getMessagesBySource('username')}"
+						var="err">
+						<div>
+							<span>${err.text}</span>
+						</div>
+					</c:forEach>
+					<br />
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-lock mycolor"></i></span> <input size="60"
-							maxlength="255" class="form-control" placeholder="Password"
-							name="password" path="password" type="password">
+							maxlength="255" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+			required="true" title="at least one number and one uppercase and lowercase letter, and maximum  8 characters"
+							placeholder="PassWord" name="password" path="password" type="password">
 					</div>
 					<!-- to display validation messages -->
-					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('password')}" var="err">
-					  <div><span>${err.text}</span></div>
-					</c:forEach><br />
+					<c:forEach
+						items="${flowRequestContext.messageContext.getMessagesBySource('password')}"
+						var="err">
+						<div>
+							<span>${err.text}</span>
+						</div>
+					</c:forEach>
+					<br />
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-user mycolor"></i></span> <input size="60"
-							maxlength="255" class="form-control" placeholder="First Name"
-							name="fname" path="fname" type="text">
+							maxlength="255" pattern="[a-zA-Z\s]{3,30}" required="true"
+							title="Size Must Be 3-30 " class="form-control"
+							placeholder="First Name" name="fname" path="fname" type="text">
 					</div>
 					<!-- to display validation messages -->
-					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('fname')}" var="err">
-					  <div><span>${err.text}</span></div>
-					</c:forEach><br />
+					<c:forEach
+						items="${flowRequestContext.messageContext.getMessagesBySource('fname')}"
+						var="err">
+						<div>
+							<span>${err.text}</span>
+						</div>
+					</c:forEach>
+					<br />
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-user mycolor"></i></span> <input size="60"
-							maxlength="255" class="form-control" placeholder="Last Name"
-							name="lname" path="lname" type="text">
+							maxlength="255" pattern="[a-zA-Z\s]{3,30}" required="true"
+							title="Size Must Be 3-30 "
+							class="form-control" placeholder="Last Name" name="lname"
+							path="lname" type="text">
 					</div>
 					<!-- to display validation messages -->
-					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('lname')}" var="err">
-					  <div><span>${err.text}</span></div>
-					</c:forEach><br />
+					<c:forEach
+						items="${flowRequestContext.messageContext.getMessagesBySource('lname')}"
+						var="err">
+						<div>
+							<span>${err.text}</span>
+						</div>
+					</c:forEach>
+					<br />
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-envelope mycolor"></i></span> <input
 							size="60" maxlength="255" class="form-control"
-							placeholder="Address" name="address"
-							path="address" type="text">
+							placeholder="Address" name="address"  pattern="[a-zA-Z\s]{3,30}" required="true"
+							title="Size Must Be 3-30 "  path="address" type="text">
 					</div>
 					<!-- to display validation messages -->
-					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('address')}" var="err">
-					  <div><span>${err.text}</span></div>
-					</c:forEach><br />
+					<c:forEach
+						items="${flowRequestContext.messageContext.getMessagesBySource('address')}"
+						var="err">
+						<div>
+							<span>${err.text}</span>
+						</div>
+					</c:forEach>
+					<br />
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-phone mycolor"></i></span> <input size="60"
-							maxlength="255" class="form-control" placeholder="Contact Number"
-							name="contactnumber" path="contactnumber"
-							type="text">
+							maxlength="255" required="true"
+							title="PhoneNumber Starts with Either 7,8 or 9.Length Must Be 10"
+							class="form-control" placeholder="Contact Number"
+							name="contactnumber" path="contactnumber" type="text">
 					</div>
 					<!-- to display validation messages -->
-					<c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('contactnumber')}" var="err">
-					  <div><span>${err.text}</span></div>
-					</c:forEach><br />
+					<c:forEach
+						items="${flowRequestContext.messageContext.getMessagesBySource('contactnumber')}"
+						var="err">
+						<div>
+							<span>${err.text}</span>
+						</div>
+					</c:forEach>
+					<br />
 					<div class="row">
 						<div class="col-md-12">
-						
-<input name="_eventId_submit" type="submit" value="Submit" /><br >
+
+							<input name="_eventId_submit" type="submit" value="Submit" /><br>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</div>
@@ -217,6 +254,6 @@ body {
 		</div>
 	</form:form>
 
-<%-- 	<%@include file="footer.jsp"%> --%>
+	<%@include file="footer.jsp"%>
 </body>
 </html>
