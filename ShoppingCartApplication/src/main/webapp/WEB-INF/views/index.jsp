@@ -42,26 +42,26 @@
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
 					<!-- 					<img class="img-responsive" src="Resources/images/cr1.jpg" alt="Chania"  width="500" height="200" > -->
-					<img src="Resources/images/cr1.jpg" class="img-fluid" width="500" height="200"
+					<img src="Resources/images/image1.jpg" class="img-fluid" 
 						alt="Responsive image">
 				</div>
 
 				<div class="item">
 					<!-- 					<img  class="img-responsive" src="Resources/images/2.jpg" alt="Chania"  > -->
-					<img src="Resources/images/cr3.jpg" class="img-fluid"
+					<img src="Resources/images/image5.jpg" class="img-fluid"
 						alt="Responsive image">
 				</div>
 				<div class="item">
 					<!-- 					<img class="img-responsive" src="Resources/images/3.jpg" alt="Flower"  > -->
-					<img src="Resources/images/cr2.jpg" class="img-fluid"
-						alt="Responsive image" height="500">
+					<img src="Resources/images/cr3.jpg" class="img-fluid"
+						alt="Responsive image" >
 				</div>
 
 
 				<div class="item">
 					<!-- 					<img class="img-responsive" src="Resources/images/4.jpg" alt="Flower"  > -->
-					<img src="Resources/images/4.jpg" class="img-fluid"
-						alt="Responsive image" height="300">
+					<img src="Resources/images/image2.jpg" class="img-fluid"
+						alt="Responsive image" >
 				</div>
 			</div>
 

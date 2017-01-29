@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.niit.domain.UserInfo;
 import com.niit.domain.UserRoles;
@@ -19,11 +21,9 @@ public class Demohandler {
 		return new UserInfo();
 	}
     //validating user details
-	public String validateDetails(@Valid UserInfo userinfo,MessageContext messageContext){
-		String status = "success";
-
-		
-		if(userinfo.getUsername().isEmpty()){
+	public String validateDetails(@Valid @ModelAttribute UserInfo userinfo,MessageContext messageContext){
+		String status="success";
+        if(userinfo.getUsername().isEmpty()){
 			messageContext.addMessage(new MessageBuilder().error().source(
 					"username").defaultText("Username cannot be Empty").build());
 			status = "failure";
@@ -53,9 +53,13 @@ public class Demohandler {
 					"contactnumber").defaultText("ContactNumber cannot be Empty").build());
 			status = "failure";
 		}
-		return status;
-	}
-	
+//		
+//		if(result.hasErrors()){
+//		return "failure";
+//	}
+//			
+			return status;
+		}
 	//saving registered user details to database
 	public String doregAction(UserInfo userinfo){
 		UserRoles r=new UserRoles();

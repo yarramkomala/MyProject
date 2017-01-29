@@ -2,17 +2,15 @@ package com.niit.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -32,18 +30,19 @@ public  UserInfo(){
 	private int userid;
 
 	
-	@NotNull
+	@NotEmpty(message="please enter your e-mail")
 	@Email
 	private String username;
-	@NotNull
+	 @NotEmpty(message = "Please enter your password.")
+	 @Size(min = 6, max =8, message = "Your password must between 6 and 8")
 	private String password;
-	@NotNull
+	@NotEmpty
 	private String fname;
-	@NotNull
+	@NotEmpty
 	private String lname;
-	@NotNull
+	@NotEmpty
 	private String address;
-	@NotNull
+	@NotEmpty
 	private String contactnumber;
 	private boolean enabled;
 

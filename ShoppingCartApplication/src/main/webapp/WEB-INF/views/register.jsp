@@ -15,245 +15,116 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
-body {
-	background-image: url("Resources/images/bgrp.jpg");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center;
-	background-size: 100% 100%;
-}
 
-.mycolor {
-	color: #72c02c;
-}
-
-.myborder {
-	padding: 20px;;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	-webkit-box-shadow: 0px 0px 3px 0px #72c02c;
-	-moz-box-shadow: 0px 0px 3px 0px #72c02c;
-	box-shadow: 0px 0px 3px 0px #72c02c;
-}
-
-.mybutton {
-	position: relative;
-	left: 50%;
-	top: 193px;
-}
-
-.margin-bottom-20 {
-	margin-bottom: 20px;
-}
-
-.btn-u:hover {
-	background: #5fb611;
-}
-
-.btn-u:hover, .btn-u:focus, .btn-u:active, .btn-u.active, .open .dropdown-toggle.btn-u
-	{
-	background: #5fb611;
-}
-
-.btn-u:hover {
-	color: #fff;
-	text-decoration: none;
-	-webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-}
-
-.btn-u {
-	background: #72c02c;
-}
-
-.btn-u {
-	white-space: nowrap;
-	border: 0;
-	color: #fff;
-	font-size: 14px;
-	cursor: pointer;
-	font-weight: 400;
-	padding: 6px 13px;
-	position: relative;
-	background: #72c02c;
-	display: inline-block;
-	text-decoration: none;
-}
-
-.input-group-addon {
-	border-right: 0;
-	/*color: #b3b3b3;*/
-	font-size: 14px;
-	background: #fff;
-	padding: 6px 12px;
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 1;
-	color: #555;
-	text-align: center;
-	background-color: #eee;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-}
-
-.input-group .form-control {
-	float: left;
-	width: 100%;
-	margin-bottom: 0;
-}
-
-.form-control {
-	box-shadow: none;
-}
-
-.form-control {
-	display: block;
-	width: 100%;
-	height: 34px !important;
-	padding: 6px 12px;
-	font-size: 14px;
-	line-height: 1.428571429;
-	color: #555;
-	background-color: #fff;
-	background-image: none;
-	border: 1px solid #72c02c !important;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-	-webkit-transition: border-color ease-in-out .15s, box-shadow
-		ease-in-out .15s;
-	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
-</style>
 </head>
 <body>
-	<%-- 	<%@include file="header.jsp"%> --%>
-	<br />
-	<form:form modelAttribute="userinfo">
-		<a href="${flowExecutionUrl}&_eventId_home">Home</a>
-		<div class="container">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-				<div class="row myborder">
-					<h4 style="color: #7EB59E; margin: initial; margin-bottom: 10px;">Sign
-						Up Now</h4>
-					<hr>
-					<div class="input-group margin-bottom-20">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-user mycolor"></i></span> <input size="60"
-							maxlength="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-							required="true" title="ex1@ex.com" "class="form-control"
-							placeholder="User Name" name="username" path="username"
-							type="email">
-					</div>
-					<!-- to display validation messages -->
-					<c:forEach
-						items="${flowRequestContext.messageContext.getMessagesBySource('username')}"
-						var="err">
-						<div>
-							<span>${err.text}</span>
-						</div>
-					</c:forEach>
-					<br />
-					<div class="input-group margin-bottom-20">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-lock mycolor"></i></span> <input size="60"
-							maxlength="255" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-			required="true" title="at least one number and one uppercase and lowercase letter, and maximum  8 characters"
-							placeholder="PassWord" name="password" path="password" type="password">
-					</div>
-					<!-- to display validation messages -->
-					<c:forEach
-						items="${flowRequestContext.messageContext.getMessagesBySource('password')}"
-						var="err">
-						<div>
-							<span>${err.text}</span>
-						</div>
-					</c:forEach>
-					<br />
-					<div class="input-group margin-bottom-20">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-user mycolor"></i></span> <input size="60"
-							maxlength="255" pattern="[a-zA-Z\s]{3,30}" required="true"
-							title="Size Must Be 3-30 " class="form-control"
-							placeholder="First Name" name="fname" path="fname" type="text">
-					</div>
-					<!-- to display validation messages -->
-					<c:forEach
-						items="${flowRequestContext.messageContext.getMessagesBySource('fname')}"
-						var="err">
-						<div>
-							<span>${err.text}</span>
-						</div>
-					</c:forEach>
-					<br />
-					<div class="input-group margin-bottom-20">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-user mycolor"></i></span> <input size="60"
-							maxlength="255" pattern="[a-zA-Z\s]{3,30}" required="true"
-							title="Size Must Be 3-30 "
-							class="form-control" placeholder="Last Name" name="lname"
-							path="lname" type="text">
-					</div>
-					<!-- to display validation messages -->
-					<c:forEach
-						items="${flowRequestContext.messageContext.getMessagesBySource('lname')}"
-						var="err">
-						<div>
-							<span>${err.text}</span>
-						</div>
-					</c:forEach>
-					<br />
-					<div class="input-group margin-bottom-20">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-envelope mycolor"></i></span> <input
-							size="60" maxlength="255" class="form-control"
-							placeholder="Address" name="address"  pattern="[a-zA-Z\s]{3,30}" required="true"
-							title="Size Must Be 3-30 "  path="address" type="text">
-					</div>
-					<!-- to display validation messages -->
-					<c:forEach
-						items="${flowRequestContext.messageContext.getMessagesBySource('address')}"
-						var="err">
-						<div>
-							<span>${err.text}</span>
-						</div>
-					</c:forEach>
-					<br />
-					<div class="input-group margin-bottom-20">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-phone mycolor"></i></span> <input size="60"
-							maxlength="255" required="true"
-							title="PhoneNumber Starts with Either 7,8 or 9.Length Must Be 10"
-							class="form-control" placeholder="Contact Number"
-							name="contactnumber" path="contactnumber" type="text">
-					</div>
-					<!-- to display validation messages -->
-					<c:forEach
-						items="${flowRequestContext.messageContext.getMessagesBySource('contactnumber')}"
-						var="err">
-						<div>
-							<span>${err.text}</span>
-						</div>
-					</c:forEach>
-					<br />
-					<div class="row">
-						<div class="col-md-12">
+	<%@include file="header.jsp"%>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-4">
 
-							<input name="_eventId_submit" type="submit" value="Submit" /><br>
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
+			<div class="jumbotron" style="width: 500px; height: 450px">
+				<div class="container">
+					<fieldset>
+						<div class="col-md-6 col-md-offset-4">
+							<h3>
+								<span class="glyphicon glyphicon-pencil"></span> SignUp
+							</h3>
 						</div>
-					</div>
+						<form:form modelAttribute="userinfo">
+							<!-- action="addUser" -->
+							<div class="form-group">
+								<!-- style="width:370px" -->
+								<label class="col-md-4 control-label">UserName</label>
+								<div class="input-group col-md-7">
+									<form:input path="username" size="60"
+							maxlength="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+							placeholder="Username" required="true" title="ex1@ex.com" class="form-control" />
+<%-- 									<span style="color: red"></span> --%> <form:errors path="username" />
+									<c:forEach
+										items="${flowRequestContext.messageContext.getMessagesBySource('username')}"
+										var="err">
+											<span style="color: red">${err.text}</span>
+									</c:forEach>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<!-- style="width:370px" -->
+								<label class="col-md-4 control-label">Password</label>
+								<div class="input-group col-md-7">
+									<form:input path="password" type="password" maxlength="255" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+			required="true" title="at least one number and one uppercase and lowercase letter, and maximum  8 characters"
+							placeholder="PassWord" class="form-control" />
+									<%-- <span style="color: red"></span> --%> <form:errors path="password" />
+									<c:forEach
+										items="${flowRequestContext.messageContext.getMessagesBySource('password')}"
+										var="err">
+										
+											<span style="color: red">${err.text}</span>
+									
+									</c:forEach>
+									<br />
+								</div>
+							</div>
+  <div class="form-group">
+   <!-- style="width:370px" -->
+     <label class="col-md-4 control-label" >First Name</label>  
+     <div class="input-group col-md-7" >
+     <form:input path="fname" maxlength="255" pattern="[a-zA-Z\s]{3,30}" required="true"
+							placeholder="Firstname" title="Size Must Be 3-30 " class="form-control" />
+<!--         <span style="color:red"> </span>  -->
+          <form:errors path="fname"/>
+        <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('fname')}" var="err">
+				  <span style="color:red">${err.text}</span>
+				  </c:forEach><br />
+				  </div></div>
+  <div class="form-group">
+   <!-- style="width:370px" -->
+     <label class="col-md-4 control-label" >Last Name</label>  
+     <div class="input-group col-md-7" >
+     <form:input path="lname" maxlength="255" pattern="[a-zA-Z\s]{1,30}" required="true"
+							placeholder="lastname" title="Size Must Be 1-30 " class="form-control" />
+<%--         <span style="color:red"> </span> --%>   <form:errors path="lname"/>
+        <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('lname')}" var="err">
+				  <span style="color:red">${err.text}</span>
+				  </c:forEach><br />
+				  </div></div>
+  <div class="form-group">
+   <!-- style="width:370px" -->
+     <label class="col-md-4 control-label" >Address</label> 
+      <div class="input-group col-md-7" >
+      <form:input path="address" placeholder=" Complete Address" name="address"  pattern="[a-zA-Z\s]{3,60}" required="true"
+							title="Size Must Be 3-60 "  class="form-control" />
+       <%--         <span style="color:red"> --%> <form:errors path="address"/> 
+        <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('address')}" var="err">
+				  <span style="color:red">${err.text}</span>
+				  </c:forEach><br />
+				  </div></div>
+  <div class="form-group">
+   <!-- style="width:370px" -->
+     <label class="col-md-4 control-label" >Contact Number</label> 
+      <div class="input-group col-md-7" ><form:input path="contactnumber" required="true"
+							placeholder="Contact number" pattern="[0-9\s]{1,10}" title="PhoneNumber Starts with Either 7,8 or 9.Length Must Be 10" class="form-control" />
+<%--         <span style="color:red"> </span> --%>   <form:errors path="contactnumber"/>
+        <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('contactnumber')}" var="err">
+				  <span style="color:red">${err.text}</span>
+				  </c:forEach>
+				  </div></div>
+<div class="row">
+<div class="col-md-6 col-md-offset-4">
+ <div   class="form-group">
+           <!--  <input type="submit"  value="Add"/> -->
+           
+         <input name="_eventId_submit" type="submit" value="Submit" class="btn btn-danger" style="width:200px"/>
+        </div>
+        </div></div>
+
+						</form:form>
+					</fieldset>
 				</div>
-				<div class="col-md-2"></div>
 			</div>
 		</div>
-	</form:form>
-
-	<%@include file="footer.jsp"%>
+	</div>
+		<%@include file="footer.jsp"%>
 </body>
 </html>

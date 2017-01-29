@@ -39,22 +39,22 @@ public class LoginPageController {
 //	@RequestMapping("/register")
 //	public String getRegister() {
 //UserInfo userinfo=new UserInfo();
-//	map.put("userinfo", userinfo);
+////	map.put("userinfo", userinfo);
 //	
 //	System.out.println(userinfo);
 //		
 //		return "register";
-//		}}
-	
+//		}
+//	
 //	@RequestMapping("/register.do")
 //	public String doAction(@Valid @ModelAttribute UserInfo userinfo,BindingResult result,@RequestParam String action,Map<String,Object> map){
 //		
 //		  if (result.hasErrors()) {
-//	            return "failure";
+//            return "failure";
 //	        }
 //	 
 //	      
-////		userservice.insertRow(userinfo);
+//		userservice.insertRow(userinfo);
 //		
 //		return "success";
 //	}

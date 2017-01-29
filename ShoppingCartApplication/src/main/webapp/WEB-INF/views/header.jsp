@@ -12,23 +12,24 @@
 
 </head>
 <body>
+<!-- navigation bar..displays fields -->
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">WebSiteName</a>
+			<a class="navbar-brand" href="#"></a>
 		</div>
-
+<!-- display in left side of navigation bar -->
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="home">Home</a></li>
 			<li class="active"><a href="disimage">products</a></li>
-<!-- 			<li><a href="#">Page 1</a></li> -->
-<!-- 			<li><a href="#">Page 2</a></li> -->
-		</ul>
+	</ul>
+		<!-- displays in right side to navigation bar -->
 		<ul class="nav navbar-nav navbar-right">
+		<!-- based on logged in user this access will executes-->
 		<li><sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
 
 		<c:if test="${pageContext.request.userPrincipal.name != null}">
-			<h2 bgcolor="red">${pageContext.request.userPrincipal.name}</h2>
+			<h2>${pageContext.request.userPrincipal.name}</h2>
 		</c:if>
 	</sec:authorize></li>
 	<c:if test="${pageContext.request.userPrincipal.name == null}">

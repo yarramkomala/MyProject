@@ -17,7 +17,7 @@
 <div class="foot">
 	<div class="col">
 		<h2>
-			<a href="mailto:nico@nicoplyley.com">copyright</a>
+			<a href="#">copyright</a>
 		</h2>
 	</div>
 </div>
