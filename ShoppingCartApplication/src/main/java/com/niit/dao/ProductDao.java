@@ -15,5 +15,6 @@ public interface ProductDao {
 	public int deleteRow(int id);
 
 	public List getProductList();
+	public List getAllProductfromCategory(String id);
 
 }

@@ -19,39 +19,64 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.domain.Category;
 import com.niit.domain.Product;
+import com.niit.service.CategoryService;
 import com.niit.service.ProductService;
 @Controller
 public class ProductController {
 	
 	@Autowired
 	ProductService pservice;
+	@Autowired
+	CategoryService categoryService;
 	Product productObject=null;
 	ServletContext servletContext;
 	//for admin getting addproduct page
 	@RequestMapping("/admin")
-	public  ModelAndView  getProductPage( @ModelAttribute Product product) {
-
+	public  ModelAndView  getProductPage( @ModelAttribute Product product,Map<String, Object> map) {
+map.put("categoryList",categoryService.getAllCategory());
 		return new  ModelAndView("addproduct");
 	}
 	//for adding product details into database
 	@RequestMapping(value="/product",method=RequestMethod.POST)
-	public  ModelAndView getProduct(@Valid @ModelAttribute Product product,HttpServletRequest hm,BindingResult result) {
-		
+	public  ModelAndView getProduct(@Valid Product product,BindingResult result,HttpServletRequest hm) {
+		System.out.println("inside a method");
      servletContext =hm.getServletContext();
-     
-     if (!product.getImage().isEmpty()) {
+     //if errors or nulls entered in addproduct.jsp it will check and returns addproduct.jsp page
+     if (result.hasErrors()) {
+    	 System.out.println("inside if");
+			return new ModelAndView("addproduct");
+		} else {
+			boolean exists = false;//in this e check with category table and insert the details into product and category tables
+			List<Category> category = categoryService.getAllCategory();
+			for(Category x:category) //taking values from category table and placing these into x variable
+			{
+				if(product.getCategoryName().equals(x.getCategoryName())==true)
+				{
+					product.setCategoryid(x);
+					pservice.insertRow(product);
+					 exists = true;
+					break;
+				}
+			}
+			if(!exists){
+			Category cat = new Category();
+			cat.setCategoryName(product.getCategoryName());
+			categoryService.add(cat);
+			product.setCategoryid(cat);}
+     if (!product.getImage().isEmpty()) { //if image is not empty
     	 System.out.println("get image");
     	 try {
     		 System.out.println("get image "+servletContext);
-			byte[] bytes = product.getImage().getBytes();
+			byte[] bytes = product.getImage().getBytes(); //read image in bytes and stores in byte
 			System.out.println("get image "+servletContext.getRealPath("/"));
 			// Creating the directory to store file
 			String rootPath = servletContext.getRealPath("/");
 			
 			System.out.println("get image "+rootPath);
-			File dir = new File(rootPath + File.separator + "Resources/images");
-			System.out.println("filee "+dir.toString());
+			File dir = new File(rootPath + File.separator + "Resources/images"); //creatiing directory in server
+			System.out.println("file"+dir.toString());
 			if (!dir.exists()){
 				System.out.println("filee "+dir.exists());	
 				dir.mkdirs();
@@ -74,12 +99,14 @@ public class ProductController {
 			return new ModelAndView("redirect:plist");
 			} catch (Exception e) {
 				e.printStackTrace();
-				return new ModelAndView("redirect:plist");
+				return new ModelAndView("addproduct");
 			}
 		} else {
-			return new ModelAndView("redirect:plist");
+			return new ModelAndView("addproduct");
 		}
-	
+		}
+		
+    
 	}
 	//for getting list of products
 	 @RequestMapping("/plist")

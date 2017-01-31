@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.niit.dao.UserDao;
+import com.niit.domain.Category;
 import com.niit.domain.Product;
 import com.niit.domain.UserInfo;
+import com.niit.service.CategoryService;
 import com.niit.service.ProductService;
 import com.niit.service.UserService;;
 
@@ -24,40 +26,28 @@ public class LoginPageController {
 	UserDao userDao;
 	@Autowired
 	ProductService productservice;
+	@Autowired
+	CategoryService categoryService;
 	
 	//method for index page
 	@RequestMapping(value={"/","/index","/home"})
 	public String getHome(Map<String, Object>map) {
 		Product productResult = new Product();
+	
 		map.put("productModel",productResult);
 	    map.put("productmodelList", productservice.getProductList());
+	    map.put("categoryList",categoryService.getAllCategory());
 		return "index";
 	}
 
-	
+	@RequestMapping("/allproduct")
+	public String view(@RequestParam("pdt") String id, Map<String, Object> map) {
+		System.out.println("allproduct");
+		map.put("productList", productservice.getAllProductfromCategory(id));
+		map.put("categoryList", categoryService.getAllCategory());
+		return "allproduct";
+	}
 
-//	@RequestMapping("/register")
-//	public String getRegister() {
-//UserInfo userinfo=new UserInfo();
-////	map.put("userinfo", userinfo);
-//	
-//	System.out.println(userinfo);
-//		
-//		return "register";
-//		}
-//	
-//	@RequestMapping("/register.do")
-//	public String doAction(@Valid @ModelAttribute UserInfo userinfo,BindingResult result,@RequestParam String action,Map<String,Object> map){
-//		
-//		  if (result.hasErrors()) {
-//            return "failure";
-//	        }
-//	 
-//	      
-//		userservice.insertRow(userinfo);
-//		
-//		return "success";
-//	}
-//	
+
 
 }

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.dao.ProductDao;
@@ -18,6 +19,8 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory session;
 	
 	@Override
 	@Transactional //The database transaction happens inside this method
@@ -74,6 +77,14 @@ public class ProductDaoImpl implements ProductDao {
 		  Serializable ids = session.getIdentifier(product);
 		  session.close();
 		  return (Integer) ids;
+	}
+	@Transactional(propagation = Propagation.SUPPORTS)
+	public List getAllProductfromCategory(String id) {
+	
+		String query="from Product where CATEGORYNAME=:output";
+		
+		List image=session.getCurrentSession().createQuery(query).setParameter("output",id).list();
+		return image;
 	}
 
 

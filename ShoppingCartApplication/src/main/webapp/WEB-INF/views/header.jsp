@@ -23,6 +23,19 @@
 			<li class="active"><a href="home">Home</a></li>
 			<li class="active"><a href="disimage">products</a></li>
 	</ul>
+	<ul class="nav navbar-nav">
+	 <li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">Category <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+
+					<c:forEach items="${categoryList}" var="admin">
+<%--  						<li><a href="${admin.categoryName}"><c:out  --%>
+<%-- 								value="${admin.categoryName}" /> </a></li>   --%>
+
+						<li><a href="allproduct?pdt=${admin.categoryName}">${admin.categoryName}</a></li>
+					</c:forEach>
+				</ul></li>
+                    </ul>
 		<!-- displays in right side to navigation bar -->
 		<ul class="nav navbar-nav navbar-right">
 		<!-- based on logged in user this access will executes-->
@@ -42,14 +55,11 @@
 				<li><a href="logout">Logout</a></li>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-
-
+                 <li><a href="category">Add Category</a></li>
 				<li><a href="admin">AddProduct</a></li>
-				
 			</sec:authorize>
 			<li><a href="<c:url value='cart'/>">cart</a></li>
-		</ul>
-		
+		</ul>	
 	</div>
 	</nav>
 	

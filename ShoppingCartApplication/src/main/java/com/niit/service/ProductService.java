@@ -14,5 +14,6 @@ public interface ProductService {
 	 public int updateRow(Product product);
 
 	 public int deleteRow(int id);
+	 public List getAllProductfromCategory(String id);
 
 }
