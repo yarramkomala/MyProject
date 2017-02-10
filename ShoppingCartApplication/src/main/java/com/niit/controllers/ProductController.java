@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.domain.CartItems;
 import com.niit.domain.Category;
 import com.niit.domain.Product;
 import com.niit.service.CategoryService;
@@ -35,13 +36,15 @@ public class ProductController {
 	//for admin getting addproduct page
 	@RequestMapping("/admin")
 	public  ModelAndView  getProductPage( @ModelAttribute Product product,Map<String, Object> map) {
-map.put("categoryList",categoryService.getAllCategory());
+map.put("productList",pservice.getProductList());
+		map.put("categoryList",categoryService.getAllCategory());
 		return new  ModelAndView("addproduct");
 	}
 	//for adding product details into database
 	@RequestMapping(value="/product",method=RequestMethod.POST)
-	public  ModelAndView getProduct(@Valid Product product,BindingResult result,HttpServletRequest hm) {
+	public  ModelAndView getProduct(@Valid Product product,BindingResult result,HttpServletRequest hm,Map<String, Object> map) {
 		System.out.println("inside a method");
+		map.put("categoryList",categoryService.getAllCategory());
      servletContext =hm.getServletContext();
      //if errors or nulls entered in addproduct.jsp it will check and returns addproduct.jsp page
      if (result.hasErrors()) {
@@ -134,7 +137,7 @@ map.put("categoryList",categoryService.getAllCategory());
 		 System.out.println(id);
 		 product.setId(id);
 		 servletContext =hm.getServletContext();
-	     
+		 pservice.updateRow(product);
 	     if (!product.getImage().isEmpty()) {
 	    	 System.out.println("get image");
 	    	 try {
@@ -182,6 +185,16 @@ map.put("img",product.getproductName());
 			return mv ;
 		}
 	 
-	 
+	 public void updateproduct( List<CartItems> cartitems)
+		{		Product product = new Product();
+				int id;
+				for(int i=0;i<cartitems.size();i++)
+				{	
+					id=cartitems.get(i).getProductid_fk().getId();
+					product=pservice.getRowById(id);
+					product.setQuantity(product.getQuantity()-cartitems.get(i).getQuantity());
+					pservice.updateRow(product);
+				}
+		}
 
 }

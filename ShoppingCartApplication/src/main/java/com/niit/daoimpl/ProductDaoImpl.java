@@ -17,66 +17,49 @@ import com.niit.domain.Product;
 @Repository //creating bean for this class and importing DAO into DI container 
 public class ProductDaoImpl implements ProductDao {
 
-	@Autowired
-	SessionFactory sessionFactory;
+	
 	@Autowired
 	private SessionFactory session;
 	
 	@Override
 	@Transactional //The database transaction happens inside this method
-	public int insertRow(Product product) {
-		Session session = sessionFactory.openSession();
-		  Transaction tx = session.beginTransaction();
-		  session.saveOrUpdate(product);
-		  tx.commit();
-		  Serializable id = session.getIdentifier(product);
-		  session.close();
-		  return (Integer) id;
+	public void insertRow(Product product) {
+		
+		   session.getCurrentSession().save(product);
 		
 	}
 
 	@Override
 	@Transactional
 	public List getProductList() {
-		Session session = sessionFactory.openSession();
-		 List productList = session.createQuery("from Product").list();
-				    
-				  session.close();
-				  return productList;
 		
+		return session.getCurrentSession().createQuery("from Product").list();
 	}
 
 	@Override
 	@Transactional
 	public Product getRowById(int id) {
-		  Session session = sessionFactory.openSession();
-		  Product product = (Product) session.load(Product.class, id);
-		  return product;
+		 
+		
+		  return  (Product) session.getCurrentSession().get(Product.class, id);
 	}
 
 	@Override
 	@Transactional
-	public int updateRow(Product product) {
-		 Session session = sessionFactory.openSession();
-		  Transaction tx = session.beginTransaction();
-		  session.saveOrUpdate(product);
-		  tx.commit();
-		  Serializable id = session.getIdentifier(product);
-		  session.close();
-		  return (Integer) id;
+	public void updateRow(Product product) {
+		session.getCurrentSession().update(product);
 	}
 
 	@Override
 	@Transactional
-	public int deleteRow(int id) {
-		Session session = sessionFactory.openSession();
-		  Transaction tx = session.beginTransaction();
-		  Product product = (Product) session.load(Product.class, id);
-		  session.delete(product);
-		  tx.commit();
-		  Serializable ids = session.getIdentifier(product);
-		  session.close();
-		  return (Integer) ids;
+	public void deleteRow(int id) {
+		
+		  session.getCurrentSession().delete(getProduct(id));
+		 
+	}
+	@Override
+	public Product getProduct(int id) {
+		return (Product)session.getCurrentSession().get(Product.class, id);
 	}
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public List getAllProductfromCategory(String id) {

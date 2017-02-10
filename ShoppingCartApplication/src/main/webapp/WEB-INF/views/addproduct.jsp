@@ -45,14 +45,22 @@
      <div class="form-group">
       <label  class="col-md-4 control-label" for="categeryName">Category name:</label>
      <div class="col-md-4">
-<%--       <form:select class="form-control" path="categoryName" text="Category name"> --%>
+      <form:select class="form-control" path="categoryName" text="Category name">
+       <form:option value="NONE" label="--- Select Category Name---"/>
+      <c:if test="${! empty categoryList }">
+      <c:forEach items="${categoryList}" var="list">
+      <form:option value="${list.categoryName }"></form:option>
+      </c:forEach>
+      </c:if>
+      </form:select>
+      <form:errors path="categoryName" cssClass="error" />
+    </div>
+    </div>
 <%--       <form:option value="NONE" label="--- Select Category Name---"/> --%>
 <%--     <form:options items="${categoryList}" itemValue="cid" itemLabel="categoryName"/> --%>
-<%--     </form:select> --%>
-<form:input type="text" class="form-control" path="categoryName"  placeholder="Enter category name"/>
-    <form:errors path="categoryName" cssClass="error" />
-    </div>
-    </div>
+    
+<%-- <form:input type="text" class="form-control" path="categoryName"  placeholder="Enter category name"/> --%>
+    
      <div class="form-group">
       <label  class="col-md-4 control-label" for="supplierName">Supplier Name:</label>
      <div class="col-md-4">

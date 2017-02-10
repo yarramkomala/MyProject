@@ -25,8 +25,8 @@ public class Product {
 	//it gives u that the field should not be empty
 	@NotEmpty(message="product name should not empty")
 	private String productName;
-	@NotEmpty(message="productname should not be empty")
-	private String price;
+	@NotNull
+	private int price;
 	@NotNull
 	private int quantity;
 	@NotEmpty(message="category name should not empty")
@@ -67,10 +67,10 @@ public class Product {
 	public void setproductName(String productName) {
 		this.productName = productName;
 	}
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	public int getQuantity() {

@@ -12,7 +12,7 @@
 	
 	<style>
 	body {
-    background-image: url("Resources/images/bgln.jpg");
+    background-image: url("Resources/images/cr4.jpg");
      background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center; 
@@ -20,7 +20,7 @@
     
     }
      body {
-    color: blue;
+    color: red;
 }
     
     </style>
@@ -44,19 +44,20 @@
 
 			<div class="form-group">
       <label for="email">Username:</label>
-      <input type="email" class="form-control" name="username" placeholder="Enter email">
+      <input type="email" class="form-control" name="username" color="black"required="true" message="username required" placeholder="Enter email">
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control" name="password" placeholder="Enter password">
+      <input type="password" class="form-control" name="password" color="black" required="true" placeholder="Enter password">
     </div>
-    <div class="checkbox">
-      <label><input type="checkbox"> Remember me</label>
-    </div>
+    
     <button type="submit" class="btn btn-default">Submit</button>
     <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
+			
 		</form>
+		
+	
 	</div>
 
 </body>

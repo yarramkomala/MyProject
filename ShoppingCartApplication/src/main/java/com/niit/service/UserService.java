@@ -9,5 +9,6 @@ public interface UserService {
 	
 	 public List<UserInfo> getUserid();
 	
-	
+	 public List<UserInfo> getUserByName(String username);
+	 public void edit(UserInfo userInfo);
 }

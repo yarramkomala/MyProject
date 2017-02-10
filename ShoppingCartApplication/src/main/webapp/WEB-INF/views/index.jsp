@@ -16,11 +16,21 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 <style>
+body{
+/*  background-image: url("Resources/images/bg1.jpg");  */
+ background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+     background-size: 100% 100%;
+	}
 .carousel-inner>.item>img, .carousel-inner>.item>a>img {
-	width:60%;
+	
 	margin: auto;
 	hieght:100%;
+	width: 70%;
+
 }
 </style>
 </head>
@@ -43,25 +53,25 @@
 				<div class="item active">
 					<!-- 					<img class="img-responsive" src="Resources/images/cr1.jpg" alt="Chania"  width="500" height="200" > -->
 					<img src="Resources/images/image1.jpg" class="img-fluid" 
-						alt="Responsive image">
+						alt="Responsive image" style=" height: 370px">
 				</div>
 
 				<div class="item">
 					<!-- 					<img  class="img-responsive" src="Resources/images/2.jpg" alt="Chania"  > -->
-					<img src="Resources/images/image5.jpg" class="img-fluid"
-						alt="Responsive image">
+					<img src="Resources/images/image2.jpg" class="img-fluid"
+						alt="Responsive image" style=" height: 370px">
 				</div>
 				<div class="item">
 					<!-- 					<img class="img-responsive" src="Resources/images/3.jpg" alt="Flower"  > -->
-					<img src="Resources/images/cr3.jpg" class="img-fluid"
-						alt="Responsive image" >
+					<img src="Resources/images/cro.jpg" class="img-fluid"
+						alt="Responsive image" style=" height: 370px">
 				</div>
 
 
 				<div class="item">
 					<!-- 					<img class="img-responsive" src="Resources/images/4.jpg" alt="Flower"  > -->
-					<img src="Resources/images/image2.jpg" class="img-fluid"
-						alt="Responsive image" >
+					<img src="Resources/images/cr.jpg" class="img-fluid"
+						alt="Responsive image" style=" height: 370px">
 				</div>
 			</div>
 
@@ -77,6 +87,27 @@
 			</a>
 		</div>
 	</div>
+	<div class="container-fluid">
+	<center>
+			<h1>New Arrivals</h1>
+		</center>
+		<div class="row">
+			<div class="col-xs-6 col-sm-4" >
+				<a href="allproduct?pdt=FootBall"><img src="<c:url value='/Resources/images/Sony.jpg'/>"
+					alt="football" class="img-responsive"
+					style="width: 4000px; height: 370px" /></a>
+			</div>
+			<div class="col-xs-6 col-sm-4" >
+				<img src="<c:url value='/Resources/images/sony1.jpg'/>" alt="cricket"
+					class="img-responsive" alt="Chania"
+					style="width: 4000px; height: 370px" />
+			</div>
+			<div class="col-xs-6 col-sm-4" >
+				<img src="<c:url value='/Resources/images/2.jpg'/>" alt="cricket"
+					class="img-responsive" alt="Chania"
+					style="width: 4000px; height: 400px" />
+			</div>
+			</div>
 	<%@include file="footer.jsp"%>
 <c:if test="not empty ${error}">
 <jsp:include page="userLogin.jsp"></jsp:include>

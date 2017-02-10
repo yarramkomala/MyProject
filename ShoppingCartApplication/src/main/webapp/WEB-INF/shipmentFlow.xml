@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<!-- Executed when webFlow is triggered -->
+	<on-start>
+		<!-- demohandler is java class available through annotated Demohandler.java 
+			class.here we are calling it’s initFlow() method. -->
+		<evaluate expression="shippmenthandler.initFlow()" result="flowScope.shippment" />
+	</on-start>
+
+	<!-- if not specified the first view state is the starting state -->
+	<view-state id="start" view="Shippment" model="flowScope.shippment">
+		<transition on="submit" to="validate" />
+	</view-state>
+
+	<action-state id="validate">
+		<evaluate expression="shippmenthandler.validateDetails(shippment,messageContext)"></evaluate>
+
+		<transition on="success" to="confirmDetails" />
+		<transition on="failure" to="start" />
+	</action-state>
+
+	<view-state id="confirmDetails" view="confirmDetails1"
+		model="flowScope.shippment">
+		<transition on="edit" to="start" />
+		<transition on="submit" to="dataBase" />
+	</view-state>
+	<action-state id="dataBase">
+		<evaluate expression="shippmenthandler.ship(shippment)"></evaluate>
+		<transition on="success" to="payment" />
+		<transition on="failure" to="start" />
+	</action-state>
+
+	<end-state id="payment" view="payment" />
+	<end-state id="toHome" view="index" />
+	
+	<!-- these events are available in every state-->
+ 	<global-transitions> 
+ 		<transition on="home" to="toHome" /> 
+ 	</global-transitions>
+</flow>
+                          

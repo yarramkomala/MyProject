@@ -15,9 +15,9 @@ public class ProductServiceImpl implements ProductService {
 	ProductDao productDao;
 	
 	@Override
-	public int insertRow(Product product) {
+	public void insertRow(Product product) {
 		
-		return productDao.insertRow(product);
+		 productDao.insertRow(product);
 	}
 
 	@Override
@@ -33,15 +33,15 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int updateRow(Product product) {
+	public void updateRow(Product product) {
 		
-		return productDao.updateRow(product);
+	 productDao.updateRow(product);
 	}
 
 	@Override
-	public int deleteRow(int id) {
+	public void deleteRow(int id) {
 		
-		return productDao.deleteRow(id);
+		 productDao.deleteRow(id);
 	}
 
 	@Override

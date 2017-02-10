@@ -20,8 +20,10 @@
  <div class="col-xs-3">
  <div class="thumbnail zoom" id="exi">
  <img  src="<c:url value="/Resources/images/${product.productName}.jpg"/>" class="img-responsive">
-
-<center><a href="pdetails"> ${product.productName}</a></center>
+<sec:authorize access="hasRole('ROLE_USER')"></sec:authorize> 
+ <center><a href="viewDetails?pdt1=${product.id}"> 
+								<button type="button" class="btn btn-info">${product.productName}</button>
+							</a></center>
 
 </div>
  </div>

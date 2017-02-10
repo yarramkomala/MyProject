@@ -20,6 +20,9 @@
 		</div>
 <!-- display in left side of navigation bar -->
 		<ul class="nav navbar-nav">
+		<li><a href="home">TeleviZion</h1></a><img src="<c:url value='Resources/images/logo.png'/>" style="width: 85px; height: 30px;" /></li>
+		</ul>		
+			<ul class="nav navbar-nav">	
 			<li class="active"><a href="home">Home</a></li>
 			<li class="active"><a href="disimage">products</a></li>
 	</ul>
@@ -52,13 +55,15 @@
 					Login</a></li>
 </c:if>
 			<sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-				<li><a href="logout">Logout</a></li>
+				<li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
                  <li><a href="category">Add Category</a></li>
 				<li><a href="admin">AddProduct</a></li>
 			</sec:authorize>
-			<li><a href="<c:url value='cart'/>">cart</a></li>
+			<li><sec:authorize access="hasRole('ROLE_USER')">
+					<a href=CartItem><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a>
+				</sec:authorize></li>
 		</ul>	
 	</div>
 	</nav>

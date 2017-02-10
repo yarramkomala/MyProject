@@ -9,28 +9,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.niit.domain.Category;
 import com.niit.domain.Product;
 import com.niit.service.CategoryService;
+import com.niit.service.ProductService;
 
 @Controller
 public class CategoryControl {
 	
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	ProductService productservice;
 
 	@RequestMapping("/category")
 	public String setupcatForm(Map<String, Object> map, @ModelAttribute("category") Category category,
 			BindingResult result) {                                  //cmd name , pojo class, pojo obj 
-
-		//Category category1 = new Category();
 		map.put("category", category);//map.put("command name or
-		// key",valuei.e the object of pojo
-		// class)
-		
-
+		// key",valuei.e the object of pojo class )
 		map.put("categoryList", categoryService.getAllCategory());
 		return "category";//jsp page
 	}
@@ -69,7 +65,22 @@ public class CategoryControl {
 		return "categoryDetails";//jsp page
 
 	}
-
-	
+	@RequestMapping("/viewDetails")
+	public String viewDetail(@RequestParam("pdt1") int id, Map<String, Object> map, Product product) {
+		
+		Product p = productservice.getRowById(id);
+		map.put("product", p);
+		map.put("categoryList", categoryService.getAllCategory());
+		return "viewDetails";
+	}
+	@RequestMapping("/delete1")
+	public String deleteProduct(Map<String, Object> map,@RequestParam int id22) {
+        //action id called on viewall
+productservice.deleteRow(id22);
+map.put("categoryList", categoryService.getAllCategory());
+map.put("productList", productservice.getProductList());
+return "allproduct"; 
+		
+	}
 
 }

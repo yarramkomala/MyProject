@@ -30,6 +30,10 @@
 				<value>com.niit.domain.UserInfo</value>
 				<value>com.niit.domain.UserRoles</value>
 				<value>com.niit.domain.Category</value>
+				<value>com.niit.domain.Cart</value>
+				<value>com.niit.domain.CartItems</value>
+				<value>com.niit.domain.Orders</value>
+				<value>com.niit.domain.Shippment</value>
 			</list>
 
 		</property>
