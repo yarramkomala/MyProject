@@ -19,9 +19,7 @@ public interface CartItemsDao {
 	public CartItems getProductById(int id);
 	public List getbyname(String name);
 	public int cartLength();
-
-
-
+public List<CartItems> getByUserId(int userid);
 
 
 }

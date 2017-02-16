@@ -28,8 +28,8 @@ public class OrderServiceImpl implements OrderService {
 		return pd.getAllOrders();
 	}
 	@Transactional
-	public void add(Cart carts) {
-		pd.add(carts);
+	public void add(String name1,Cart carts) {
+		pd.add(name1,carts);
 		
 	}
 	@Transactional

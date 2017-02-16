@@ -31,7 +31,7 @@ public class Shippment implements Serializable {
 	private String pincode;
 	private String mobilenumber;
 	@OneToOne
-	@JoinColumn(name = "userid")
+	@JoinColumn(name = "username")
 	private UserInfo username;
 	
 	public Shippment(){

@@ -68,6 +68,13 @@ public class CartItemsServiceImp implements CartItemsService {
 		
 	}
 
+	@Override
+	@Transactional
+	public List<CartItems> getByUserId(int userid) {
+		
+		return cartItemsDao.getByUserId(userid);
+	}
+
 	
 
 }

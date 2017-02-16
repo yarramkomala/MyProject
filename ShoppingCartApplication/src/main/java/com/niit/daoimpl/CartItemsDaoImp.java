@@ -72,6 +72,14 @@ public class CartItemsDaoImp implements CartItemsDao {
 		
 	}
 
+	@Override
+	@Transactional
+	public List<CartItems> getByUserId(int userid) {
+	String q="from CartItems where userid=:output";
+	List i=session.getCurrentSession().createQuery(q).setParameter("output",userid).list();
+		return i;
+	}
+
 	
 		
 	}

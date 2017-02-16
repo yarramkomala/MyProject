@@ -42,14 +42,27 @@ public class OrderDaoImpl implements OrderDao {
 
 	@Override
 	@Transactional
-	public void add(Cart carts) {
+	public void add(String username,Cart carts) {
 		UserInfo registrationDetails=new UserInfo();
 		
 		//set mailid in cart object
-		/*registrationDetails.setUsername(username);
-		carts.setId_fk(registrationDetails);*/
+		registrationDetails.setUsername(username);
+		System.out.println("It is entering into the billing address");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		 String username1 = auth.getName();  
+		 		 System.out.println(username1);
+		 List<UserInfo> userDetail = ud.getUserByName(username1);//user details are stored in userDetail object
+		  System.out.println("It is entering into the billing address");
+		 //TO STORE  THE USERID IN BILLINGADDRESS TABLE
+		   for(int i=0;i<userDetail .size();i++)
+		   { 
+		    System.out.println("It is entering into block which is to add user id");
+			carts.setUserid(userDetail.get(i));
+			
+		   }
 		
 		//get list of product
+		@SuppressWarnings("unchecked")
 		List<CartItems> li=cartItemsDao.getAllProduct();
 		
 		//to store the grand total
@@ -90,7 +103,7 @@ public class OrderDaoImpl implements OrderDao {
 		
 		//get list of product in cart based on mailid
 		@SuppressWarnings("unchecked")
-		List<Cart> ca=sessionFactory.getCurrentSession().createQuery("from Cart where id_fk='"+username+"'").list();
+		List<Cart> ca=sessionFactory.getCurrentSession().createQuery("from Cart where username='"+username+"'").list();
 		/*ct.setCartId(ca.get(0).getCartId());*/
 		orders.setCartid_fk(ct);
 		
@@ -102,7 +115,7 @@ public class OrderDaoImpl implements OrderDao {
 		session.saveOrUpdate(orders);
 		
 		//get the username and set the latest cartid in the customer table
-		ud.getUserByName(username);
+	ud.getUserByName(username);
 		List<UserInfo> rs=ud.getUserByName(username);
 		registrationDetails=rs.get(0);
 		registrationDetails.setCart(ca.get(ca.size()-1));

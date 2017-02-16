@@ -2,6 +2,7 @@ package com.niit.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,9 +29,8 @@ public class CartItems implements Serializable{
 	@ManyToOne()
 	@JoinColumn(name = "id")
 	private Product productid_fk;
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="userid")
-	
 	private UserInfo userid;
 	private int totalPrice;
 	

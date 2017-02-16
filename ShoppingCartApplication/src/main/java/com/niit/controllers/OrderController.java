@@ -42,6 +42,7 @@ public class OrderController {
 		{	//for getting the loggedin username
 			 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			 String name = auth.getName(); 
+			 List<UserInfo> userDetail = ud.getUserByName(name);
 			 System.out.println(name);
 			 @SuppressWarnings("unchecked")
 			List<CartItems> list=cartItems.getAllProduct();
@@ -61,15 +62,27 @@ public class OrderController {
 				 cart.setQuantity(list.get(i).getQuantity());
 				 cart.setTotal(list.get(i).getTotalPrice());
 				 String name1= auth.getName();
-				 ps.add(cart); 
+				 ps.add(name1,cart); 
 				/* ps.add(cart);
 				 */
 			 }
 			   
+	           //to store cartid in User table
+	           /* userDetail.get(0).setUserid(userDetail.get(0).getUserid());
+	            
+	            userDetail.get(0).setCart(cart);//setCart is the foreign key setter method
+	            
+	            ud.edit(userDetail.get(0));*/ 
+	            
+	           /* //delete caritem table, after add to the Cart  table
+	            List<CartItems> crt=cartItems.getByUserId(userDetail.get(0).getUserid());
+	    		for(int i=0;crt.size()>i;i++){
+	    			cs.delete(crt.get(i).getCartItems_id());}*/
+			   
 		    ps.orderadd(name);
 		     @SuppressWarnings("unchecked")
 			List<Orders> ordlist=ps.getAllOrders();
-		   /*  email.send(name,ordlist.get(ordlist.size()-1).getOrderid());*/
+		    /* email.send(name,ordlist.get(ordlist.size()-1).getOrderid());*/
 		     ps.Cartitems();	    
 		      return"index";
 		     }

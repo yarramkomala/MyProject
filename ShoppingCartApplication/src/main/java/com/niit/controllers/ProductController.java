@@ -51,23 +51,7 @@ map.put("productList",pservice.getProductList());
     	 System.out.println("inside if");
 			return new ModelAndView("addproduct");
 		} else {
-			boolean exists = false;//in this e check with category table and insert the details into product and category tables
-			List<Category> category = categoryService.getAllCategory();
-			for(Category x:category) //taking values from category table and placing these into x variable
-			{
-				if(product.getCategoryName().equals(x.getCategoryName())==true)
-				{
-					product.setCategoryid(x);
-					pservice.insertRow(product);
-					 exists = true;
-					break;
-				}
-			}
-			if(!exists){
-			Category cat = new Category();
-			cat.setCategoryName(product.getCategoryName());
-			categoryService.add(cat);
-			product.setCategoryid(cat);}
+			
      if (!product.getImage().isEmpty()) { //if image is not empty
     	 System.out.println("get image");
     	 try {
@@ -95,8 +79,24 @@ map.put("productList",pservice.getProductList());
 			stream.close();
 			System.out.println("server file location"+serverFile.getAbsolutePath());
 			
-			
-			pservice.insertRow(product);
+			boolean exists = false;//in this e check with category table and insert the details into product and category tables
+			List<Category> category = categoryService.getAllCategory();
+			for(Category x:category) //taking values from category table and placing these into x variable
+			{
+				if(product.getCategoryName().equals(x.getCategoryName())==true)
+				{
+					product.setCategoryid(x);
+					pservice.insertRow(product);
+					 exists = true;
+					break;
+				}
+			}
+			if(!exists){
+			Category cat = new Category();
+			cat.setCategoryName(product.getCategoryName());
+			categoryService.add(cat);
+			product.setCategoryid(cat);}
+			/*pservice.insertRow(product);*/
     	 }
 			
 			return new ModelAndView("redirect:plist");
@@ -192,7 +192,9 @@ map.put("img",product.getproductName());
 				{	
 					id=cartitems.get(i).getProductid_fk().getId();
 					product=pservice.getRowById(id);
+					
 					product.setQuantity(product.getQuantity()-cartitems.get(i).getQuantity());
+					
 					pservice.updateRow(product);
 				}
 		}

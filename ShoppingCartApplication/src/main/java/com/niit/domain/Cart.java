@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="Cart")
+@Table(name = "Cart")
 public class Cart implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,6 +27,7 @@ public class Cart implements Serializable {
 	private int quantity;
 	private String date_time;
 	private String time;
+
 	public String getTime() {
 		return time;
 	}
@@ -39,25 +40,19 @@ public class Cart implements Serializable {
 	@JoinColumn(name = "id")
 	private Product product_fk;
 	@OneToMany(mappedBy = "cartid", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<CartItems> cartItems;
-	/*@OneToOne
-	@JoinColumn(name="userid")
-	 @JsonIgnore*/
-	
-	private String id_fk;
-	
-	
+	private List<CartItems> cartItems;
+	@OneToOne
+	@JoinColumn(name = "userid")
+	@JsonIgnore
 
-	
+	private UserInfo userid;
 
-	
-
-	public String getId_fk() {
-		return id_fk;
+	public UserInfo getUserid() {
+		return userid;
 	}
 
-	public void setId_fk(String id_fk) {
-		this.id_fk = id_fk;
+	public void setUserid(UserInfo userid) {
+		this.userid = userid;
 	}
 
 	public int getCartId() {
@@ -92,8 +87,6 @@ public class Cart implements Serializable {
 		this.date_time = date_time;
 	}
 
-	
-
 	public Product getProduct_fk() {
 		return product_fk;
 	}
@@ -110,5 +103,4 @@ public class Cart implements Serializable {
 		this.cartItems = cartItems;
 	}
 
-	
 }

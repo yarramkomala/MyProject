@@ -19,10 +19,10 @@ public class Orders implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	
 	private int orderid;
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "cartid")
 	private Cart cartid_fk;
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "sid")
 	private Shippment sid_fk;
 	

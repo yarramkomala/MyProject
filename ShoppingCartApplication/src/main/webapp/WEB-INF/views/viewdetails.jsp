@@ -28,7 +28,16 @@
 					<h1>&#x20B9 ${product.price}</h1>
 					
 					<p>
-					Available products<h2>${product.quantity}</h2>
+					<h2>Available products
+					</h2>
+					<c:if test="${product.quantity}==0">
+					<h2></h2>
+					</c:if>
+					<c:if test="${product.quantity}!=0">
+					${product.quantity}
+					
+					</c:if>
+					
 					</p>
 					<p>
 					<h3>${product.description}</h3>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.niit.domain.UserInfo;
 import com.niit.domain.UserRoles;
 import com.niit.service.UserService;
+import com.niit.serviceimpl.mailserviceimpl;
 @Component
 public class Demohandler {
 	@Autowired
@@ -61,12 +62,30 @@ public class Demohandler {
 			return status;
 		}
 	//saving registered user details to database
+	@Autowired
+	mailserviceimpl mailtouser;
 	public String doregAction(UserInfo userinfo){
 		UserRoles r=new UserRoles();
 		r.setRole("ROLE_USER");
 		r.setUserid(userinfo);
 		userinfo.setEnabled(true);
 		userservice.insertRow(userinfo);
+		String toAddr = "yarramkomali@gmail.com";
+		String fromAddr = "yarramkomali@gmail.com";
+ 
+		// email subject
+		String subject = "Tv world welcomes you";
+ 
+		// email body
+		String body = "Welcome to the Clickart "+userinfo.getFname()+"."+System.getProperty("line.separator")
+				+"Thanks to begin with us."+System.getProperty("line.separator")
+				+System.getProperty("line.separator")
+				+System.getProperty("line.separator")
+				+System.getProperty("line.separator")
+				+ "------------"+System.getProperty("line.separator")
+				+ "-Tv world";
+		mailtouser.mailmethod(toAddr, fromAddr, subject, body);
+
 		return "success";
 	}
 

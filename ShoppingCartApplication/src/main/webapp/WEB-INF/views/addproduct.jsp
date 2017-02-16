@@ -30,7 +30,7 @@
     <div class="form-group">
       <label  class="col-md-4 control-label" for="price">Price:</label>
       <div class="col-md-4">
-      <form:input type="text" class="form-control" path="price"  placeholder="Enter price"/>
+      <form:input type="number" min="0" class="form-control" path="price"  placeholder="Enter price"/>
     <form:errors path="price" cssClass="error" />
         </div>
     </div>
@@ -38,7 +38,7 @@
     <label  class="col-md-4 control-label" for="quantity">Quantity:</label>
      <div class="col-md-4">
       
-     <form:input type="text" class="form-control" path="quantity"  placeholder="Enter quantity"/> 
+     <form:input type="number" min="0" class="form-control" path="quantity"  placeholder="Enter quantity"/> 
     <form:errors path="quantity" cssClass="error" />
     </div>
     </div>

@@ -6,7 +6,7 @@ import com.niit.domain.Cart;
 import com.niit.domain.Orders;
 
 public interface OrderDao {
-	public void add(Cart carts);
+	public void add(String username,Cart carts);
 	public void orderadd(String username);
 	public void Cartitems();
 	public List getAllOrders();
